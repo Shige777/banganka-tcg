@@ -1,0 +1,50 @@
+{
+  "id": "MAN_MAN_13",
+  "cardName": "コフィ",
+  "type": 0,
+  "cpCost": 5,
+  "aspect": 3,
+  "effectKey": "SUMMON_ON_PLAY_DRAW",
+  "flavorText": "流星を追いかける者。その軌跡が新たな道を拓く。",
+  "rarity": "SR",
+  "wishTrigger": "-",
+  "emotionTag": "Thirst",
+  "battlePower": 7000,
+  "wishDamage": 5,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Rush"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 1,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_man_13",
+  "title": "軌跡の記録者",
+  "visualDescription": "Kofi, orbital path tracer, surrounded by purple star trails"
+}

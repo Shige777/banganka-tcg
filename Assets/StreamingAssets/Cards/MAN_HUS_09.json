@@ -1,0 +1,50 @@
+{
+  "id": "MAN_HUS_09",
+  "cardName": "馬城",
+  "type": 0,
+  "cpCost": 4,
+  "aspect": 5,
+  "effectKey": "SUMMON_ON_PLAY_DRAW",
+  "flavorText": "罪を内に閉じ込める城壁。沈黙がその強さの証。",
+  "rarity": "R",
+  "wishTrigger": "-",
+  "emotionTag": "Atonement",
+  "battlePower": 6300,
+  "wishDamage": 3,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 1,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_hus_09",
+  "title": "城壁の化身",
+  "visualDescription": "Ma Cheng, living fortress wall, armor fused with stone"
+}

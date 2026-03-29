@@ -1,0 +1,386 @@
+[
+  {
+    "id": "LDR_CON_01",
+    "leaderName": "Aldric（アルドリック）",
+    "keyAspect": 0,
+    "basePower": 5000,
+    "baseWishDamage": 3,
+    "wishDamageType": "fixed",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 2,
+    "wishDamageByLevel": [
+      3,
+      5,
+      8
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      "GuardBreak"
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "突撃令",
+        "effectKey": "LEADER_SKILL_RUSH_ALL",
+        "description": "自軍顕現全体にRush付与（ターン終了まで）",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "覇王の一喝",
+        "effectKey": "LEADER_SKILL_POWER_BUFF_GUARDBREAK",
+        "description": "自軍顕現全体に戦力+3000＋GuardBreak付与（ターン終了まで）",
+        "powerDelta": 3000,
+        "grantKeyword": "GuardBreak",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      }
+    ]
+  },
+  {
+    "id": "LDR_HUS_01",
+    "leaderName": "崔鋒（ツェイ・フォン）",
+    "keyAspect": 5,
+    "basePower": 5500,
+    "baseWishDamage": 2,
+    "wishDamageType": "fixed",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 2,
+    "wishDamageByLevel": [
+      2,
+      4,
+      6
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      "Blocker"
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "不退転の構え",
+        "effectKey": "LEADER_SKILL_DAMAGE_HALVE",
+        "description": "自軍全体が受けるダメージを半減（1ターン）",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.5,
+        "duration": 1,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "殉の遺言",
+        "effectKey": "LEADER_SKILL_SACRIFICE_DAMAGE",
+        "description": "自軍顕現1体を退場させ、その戦力の10%を固定%ダメージとして相手HPに与える",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": "power*0.10"
+      }
+    ]
+  },
+  {
+    "id": "LDR_MAN_01",
+    "leaderName": "Rahim（ラヒム）",
+    "keyAspect": 3,
+    "basePower": 5000,
+    "baseWishDamage": 3,
+    "wishDamageType": "fixed",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 2,
+    "wishDamageByLevel": [
+      3,
+      5,
+      8
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      "Rush"
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "姉の教え",
+        "effectKey": "LEADER_SKILL_GRAVE_TO_HAND",
+        "description": "墓地の顕現1体を手札に戻す",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 1,
+        "targetScope": "",
+        "source": "graveyard",
+        "destination": "hand",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "蘇りの祈り",
+        "effectKey": "LEADER_SKILL_GRAVE_TO_FIELD",
+        "description": "墓地の顕現1体を場に直接召喚",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 1,
+        "targetScope": "",
+        "source": "graveyard",
+        "destination": "field",
+        "healHP": 0,
+        "damageFormula": ""
+      }
+    ]
+  },
+  {
+    "id": "LDR_VER_01",
+    "leaderName": "Amara（アマラ）",
+    "keyAspect": 4,
+    "basePower": 4500,
+    "baseWishDamage": 5,
+    "wishDamageType": "current",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 3,
+    "wishDamageByLevel": [
+      5,
+      8,
+      12
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      ""
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "呪縛の糸",
+        "effectKey": "LEADER_SKILL_DISMANTLE_HALVE_DRAW",
+        "description": "自軍顕現1体を解体＋相手顕現1体の戦力を永続半減＋1ドロー",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 1,
+        "dismantleCount": 1,
+        "powerMultiplier": 0.5,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 1,
+        "targetScope": "enemy",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "世界消去宣言",
+        "effectKey": "LEADER_SKILL_DISMANTLE_ALL_RUIN_DAMAGE",
+        "description": "自軍顕現を全て解体し、墓地枚数×固定2%ダメージを相手HPに与える",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": "ruinCount*2"
+      }
+    ]
+  },
+  {
+    "id": "LDR_WEA_01",
+    "leaderName": "灯凪（とうな）",
+    "keyAspect": 2,
+    "basePower": 5000,
+    "baseWishDamage": 3,
+    "wishDamageType": "fixed",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 2,
+    "wishDamageByLevel": [
+      3,
+      5,
+      8
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      "Blocker"
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "響き渡る声",
+        "effectKey": "LEADER_SKILL_DRAW",
+        "description": "カードを2枚引く",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 2,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "万語の祝福",
+        "effectKey": "LEADER_SKILL_MASS_BUFF_HEAL",
+        "description": "自軍顕現全体の戦力+2000（永続）＋自HP10回復",
+        "powerDelta": 2000,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 0,
+        "targetScope": "",
+        "source": "",
+        "destination": "",
+        "healHP": 10,
+        "damageFormula": ""
+      }
+    ]
+  },
+  {
+    "id": "LDR_WHI_01",
+    "leaderName": "Vael（ヴァエル）",
+    "keyAspect": 1,
+    "basePower": 5000,
+    "baseWishDamage": 3,
+    "wishDamageType": "fixed",
+    "levelCap": 3,
+    "evoGaugeMaxByLevel": [
+      3,
+      4
+    ],
+    "levelUpPowerGain": 1000,
+    "levelUpWishDamageGain": 2,
+    "wishDamageByLevel": [
+      3,
+      5,
+      8
+    ],
+    "grantedKeywordsByLevel": [
+      "",
+      ""
+    ],
+    "leaderSkills": [
+      {
+        "unlockLevel": 2,
+        "name": "静寂の檻",
+        "effectKey": "LEADER_SKILL_ATTACK_SEAL",
+        "description": "相手顕現1体を攻撃封じ（ターン終了まで）",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 1,
+        "targetScope": "enemy",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      },
+      {
+        "unlockLevel": 3,
+        "name": "虚無の問い",
+        "effectKey": "LEADER_SKILL_HAND_DISCARD",
+        "description": "相手の手札からランダムに2枚を墓地送り",
+        "powerDelta": 0,
+        "grantKeyword": "",
+        "drawCount": 0,
+        "dismantleCount": 0,
+        "powerMultiplier": 0.0,
+        "damageMultiplier": 0.0,
+        "duration": 0,
+        "targetCount": 2,
+        "targetScope": "enemy",
+        "source": "",
+        "destination": "",
+        "healHP": 0,
+        "damageFormula": ""
+      }
+    ]
+  }
+]

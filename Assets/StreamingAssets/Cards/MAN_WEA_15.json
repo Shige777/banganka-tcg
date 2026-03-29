@@ -1,0 +1,51 @@
+{
+  "id": "MAN_WEA_15",
+  "cardName": "磐根",
+  "type": 0,
+  "cpCost": 4,
+  "aspect": 2,
+  "effectKey": "SUMMON_AMBUSH_DEFEND_BUFF",
+  "flavorText": "盾樹が根を張るとき、味方は揺るがない壁を得る。",
+  "rarity": "SR",
+  "wishTrigger": "WT_POWER_PLUS",
+  "emotionTag": "Grace",
+  "battlePower": 4000,
+  "wishDamage": 3,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Ambush",
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_wea_15",
+  "title": "盾樹の番人",
+  "visualDescription": "Iwane, massive defender whose shield is a living tree trunk"
+}

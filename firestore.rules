@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ============================================================
+    // ユーザーデータ：本人のみ読み書き
+    // ============================================================
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      // サブコレクション（cards, decks, stats, friends, invites, ranked）
+      match /{subcollection}/{docId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // fcmTokens サブコレクション
+      match /fcmTokens/{tokenId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // ============================================================
+    // 対戦履歴：参加者のみ読み取り、書き込みはCloud Functionsのみ
+    // ============================================================
+    match /matches/{matchId} {
+      allow read: if request.auth != null &&
+        (request.auth.uid == resource.data.player1Uid ||
+         request.auth.uid == resource.data.player2Uid);
+      allow write: if false;
+    }
+
+    // ============================================================
+    // ルーム：認証済みユーザーが読み書き
+    // ============================================================
+    match /rooms/{roomId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.hostUid == request.auth.uid;
+      allow update: if request.auth != null
+        && (request.auth.uid == resource.data.hostUid
+            || request.auth.uid == resource.data.guestUid);
+      allow delete: if false;
+    }
+
+    // ============================================================
+    // カードマスター：全員読み取り可、書き込みは管理者のみ
+    // ============================================================
+    match /cardMaster/{cardId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ============================================================
+    // リーダーマスター：全員読み取り可、書き込みは管理者のみ
+    // ============================================================
+    match /leaderMaster/{leaderId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ============================================================
+    // ショップ：認証済みユーザーが読み取り、書き込みはCloud Functionsのみ
+    // ============================================================
+    match /shopItems/{itemId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // ============================================================
+    // ランキング：全員読み取り可、書き込みはCloud Functionsのみ
+    // 含む: seasons/{seasonId}/rankings/{uid}
+    // ============================================================
+    match /rankings/{rankingId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /seasons/{seasonId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+
+      // Season rankings (top 100)
+      match /rankings/{uid} {
+        allow read: if request.auth != null;
+        allow write: if false;
+      }
+    }
+
+    // ============================================================
+    // イベント：全員読み取り可、書き込みは管理者のみ
+    // ============================================================
+    match /events/{eventId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}

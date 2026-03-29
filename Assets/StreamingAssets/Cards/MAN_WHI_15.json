@@ -1,0 +1,50 @@
+{
+  "id": "MAN_WHI_15",
+  "cardName": "シルエット",
+  "type": 0,
+  "cpCost": 3,
+  "aspect": 1,
+  "effectKey": "SUMMON_AMBUSH_DEFEND",
+  "flavorText": "霧から現れた刺客。攻撃元を沈黙させる。",
+  "rarity": "SR",
+  "wishTrigger": "WT_BOUNCE",
+  "emotionTag": "Pride",
+  "battlePower": 2500,
+  "wishDamage": 3,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Ambush"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_whi_15",
+  "title": "影なき刺客",
+  "visualDescription": "Silhouette, assassin with no shadow, emerging from fog"
+}

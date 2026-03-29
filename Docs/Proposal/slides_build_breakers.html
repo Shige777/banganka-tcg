@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビルドブレイカーズ — ゲーム企画書</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<style>
+  :root {
+    --bg: #FFF8E7;
+    --orange: #FF8C42;
+    --blue: #4DA8DA;
+    --green: #6BCB77;
+    --dark: #333;
+    --light-orange: #FFF0E0;
+    --light-blue: #E8F4FD;
+    --light-green: #E8F8EC;
+  }
+
+  .reveal {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dark);
+  }
+
+  .reveal .slides {
+    text-align: left;
+  }
+
+  .reveal .slides section {
+    background: var(--bg);
+    padding: 20px 40px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    color: var(--dark);
+    text-transform: none;
+    text-align: center;
+  }
+
+  .reveal h1 { font-size: 1.8em; }
+  .reveal h2 { font-size: 1.2em; margin-bottom: 0.4em; }
+  .reveal h3 { font-size: 0.85em; }
+
+  .reveal p, .reveal li, .reveal td, .reveal th {
+    font-size: 0.65em;
+  }
+
+  .accent-orange { color: var(--orange); }
+  .accent-blue { color: var(--blue); }
+  .accent-green { color: var(--green); }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.6em;
+    font-weight: 700;
+    margin: 2px 3px;
+  }
+  .tag-orange { background: var(--orange); color: #fff; }
+  .tag-blue { background: var(--blue); color: #fff; }
+  .tag-green { background: var(--green); color: #fff; }
+  .tag-dark { background: #555; color: #fff; }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    margin: 6px 0;
+  }
+
+  .card-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .card-row .card {
+    flex: 1;
+    min-width: 160px;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  /* Title slide */
+  .title-slide {
+    text-align: center !important;
+  }
+  .title-slide h1 {
+    font-size: 1.8em;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, var(--orange), #FF6B35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .title-slide .subtitle {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 6px;
+  }
+  .title-slide .emoji-row {
+    font-size: 2em;
+    margin: 14px 0;
+    letter-spacing: 12px;
+  }
+  .title-slide .author {
+    font-size: 0.7em;
+    color: #888;
+    margin-top: 16px;
+  }
+
+  /* Concept quote */
+  .concept-quote {
+    background: linear-gradient(135deg, var(--orange), #FF6B35);
+    color: #fff !important;
+    border-radius: 12px;
+    padding: 16px 24px;
+    font-size: 0.9em;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.6;
+    margin: 12px 0;
+  }
+
+  /* Target table */
+  .styled-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.6em;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .styled-table th {
+    background: var(--orange);
+    color: #fff;
+    padding: 6px 10px;
+    font-weight: 700;
+    text-align: left;
+  }
+  .styled-table td {
+    background: #fff;
+    padding: 5px 10px;
+    border-bottom: 1px solid #f0e8d8;
+  }
+  .styled-table tr:last-child td { border-bottom: none; }
+  .styled-table tr:nth-child(even) td { background: var(--light-orange); }
+
+  /* Game screen mockup */
+  .game-screen {
+    background: linear-gradient(180deg, #E8D5F5 0%, #D4E8F7 30%, #D4F7D4 70%, #F7E8D4 100%);
+    border-radius: 16px;
+    padding: 10px 14px;
+    max-width: 350px;
+    margin: 0 auto;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    border: 2px solid #ddd;
+    font-size: 0.55em;
+  }
+  .game-screen-mini {
+    background: linear-gradient(180deg, #E8D5F5 0%, #D4E8F7 30%, #D4F7D4 70%, #F7E8D4 100%);
+    border-radius: 12px;
+    padding: 8px 10px;
+    max-width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border: 2px solid #ddd;
+    font-size: 0.5em;
+  }
+  .game-zone {
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin: 4px 0;
+    text-align: center;
+  }
+  .game-zone-enemy {
+    border: 2px solid #E57373;
+  }
+  .game-zone-self {
+    border: 2px solid var(--blue);
+  }
+  .game-zone .buildings {
+    font-size: 1.4em;
+    letter-spacing: 3px;
+    margin: 2px 0;
+  }
+  .game-zone .label {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #666;
+  }
+  .game-zone .pts {
+    font-size: 0.9em;
+    font-weight: 900;
+    color: var(--orange);
+  }
+  .game-info {
+    text-align: center;
+    font-weight: 700;
+    padding: 3px 0;
+    font-size: 0.8em;
+    color: #555;
+  }
+  .game-info .timer {
+    font-size: 1.1em;
+    color: var(--orange);
+  }
+  .action-buttons {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .action-btn {
+    flex: 1;
+    border-radius: 10px;
+    padding: 6px 4px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.75em;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .action-btn .emoji { font-size: 1.2em; display: block; margin-bottom: 1px; }
+  .action-btn .effect { font-size: 0.7em; opacity: 0.9; }
+  .btn-build { background: linear-gradient(135deg, var(--green), #4CAF50); }
+  .btn-break { background: linear-gradient(135deg, var(--orange), #E65100); }
+  .btn-guard { background: linear-gradient(135deg, var(--blue), #1976D2); }
+  .game-countdown {
+    text-align: center;
+    font-weight: 700;
+    color: #E65100;
+    font-size: 0.75em;
+    margin-top: 4px;
+    padding: 3px;
+    background: rgba(255,140,66,0.15);
+    border-radius: 6px;
+  }
+
+  /* Matrix table */
+  .matrix-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.55em;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  .matrix-table th {
+    padding: 5px 4px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .matrix-table th.corner { background: #f5edd8; }
+  .matrix-table th.col-head { background: var(--blue); color: #fff; }
+  .matrix-table th.row-head { background: var(--orange); color: #fff; }
+  .matrix-table td {
+    background: #fff;
+    padding: 5px 4px;
+    text-align: center;
+    border: 1px solid #f0e8d8;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .matrix-table .win { background: #FFF3E0; color: #E65100; }
+  .matrix-table .lose { background: #E3F2FD; color: #1565C0; }
+  .matrix-table .draw { background: #F5F5F5; color: #777; }
+  .matrix-table .special { background: #FCE4EC; color: #C62828; }
+
+  /* Flow diagram */
+  .flow-steps {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 10px 0;
+  }
+  .flow-step {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
+    max-width: 200px;
+  }
+  .flow-step .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.85em;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .flow-step .step-title {
+    font-weight: 900;
+    font-size: 0.8em;
+    margin: 2px 0;
+  }
+  .flow-step .step-time {
+    font-size: 0.6em;
+    color: #999;
+    font-weight: 700;
+  }
+  .flow-step .step-desc {
+    font-size: 0.55em;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+
+  /* Territory evolution */
+  .territory-stages {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 10px 0;
+  }
+  .territory-stage {
+    text-align: center;
+    flex: 1;
+    max-width: 120px;
+  }
+  .territory-stage .stage-visual {
+    font-size: 1.5em;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+  .territory-stage .stage-label {
+    font-weight: 900;
+    font-size: 0.7em;
+    margin-top: 2px;
+  }
+  .territory-stage .stage-pts {
+    font-size: 0.6em;
+    color: #999;
+    font-weight: 700;
+  }
+  .territory-stage .stage-bar {
+    height: 4px;
+    border-radius: 2px;
+    margin: 4px auto 0;
+    width: 70%;
+  }
+  .territory-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: var(--orange);
+    margin-bottom: 30px;
+  }
+
+  /* Appeal points */
+  .appeal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .appeal-list li {
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 12px;
+    margin: 4px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    font-size: 0.65em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .appeal-list li .appeal-icon {
+    font-size: 1.3em;
+    flex-shrink: 0;
+  }
+  .appeal-list li strong {
+    color: var(--orange);
+  }
+
+  /* Small text helper */
+  .small { font-size: 0.6em; color: #888; }
+  .center { text-align: center; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 10px 10px 0;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 0.65em;
+    line-height: 1.5;
+  }
+
+  .reveal .slides section .fragment.visible { opacity: 1; }
+
+  /* vs badge */
+  .vs-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 900;
+    font-size: 0.8em;
+    padding: 2px 10px;
+    border-radius: 8px;
+  }
+
+  /* Point design cards */
+  .point-cards {
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 6px;
+  }
+  .point-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    font-size: 0.5em;
+    flex: 1;
+    min-width: 110px;
+    max-width: 160px;
+    border-top: 3px solid var(--orange);
+  }
+  .point-card strong { color: var(--orange); }
+
+  .reveal ul { font-size: 0.7em; }
+  .reveal li { margin: 3px 0; }
+
+  /* Life scene cards */
+  .life-scene {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .life-scene .scene-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    font-size: 0.55em;
+    flex: 1;
+    min-width: 130px;
+    max-width: 180px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .life-scene .scene-card .scene-emoji {
+    font-size: 1.5em;
+    margin-bottom: 2px;
+  }
+  .life-scene .scene-card .scene-quote {
+    color: var(--orange);
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  /* Compact territory strip */
+  .territory-strip {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 4px 0;
+  }
+  .territory-strip .ts-stage {
+    text-align: center;
+    flex: 1;
+    max-width: 100px;
+  }
+  .territory-strip .ts-stage .ts-visual {
+    font-size: 1.2em;
+    height: 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2px;
+  }
+  .territory-strip .ts-stage .ts-label {
+    font-weight: 900;
+    font-size: 0.6em;
+    margin-top: 2px;
+  }
+  .territory-strip .ts-stage .ts-pts {
+    font-size: 0.5em;
+    color: #999;
+    font-weight: 700;
+  }
+  .territory-strip .ts-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+
+  /* Why digital note */
+  .why-digital {
+    background: linear-gradient(135deg, #E8F4FD, #D4E8F7);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 10px 10px 0;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 0.55em;
+    line-height: 1.5;
+  }
+
+  /* Compact flow for merged slide */
+  .flow-steps-compact {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 6px 0;
+  }
+  .flow-step-compact {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 8px 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    max-width: 170px;
+  }
+  .flow-step-compact .step-num-sm {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.7em;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .flow-step-compact .step-title-sm {
+    font-weight: 900;
+    font-size: 0.65em;
+    margin: 2px 0;
+  }
+  .flow-step-compact .step-desc-sm {
+    font-size: 0.5em;
+    color: #666;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+  .flow-arrow-sm {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1: Title (with compact game screen mockup + hook) -->
+<section class="title-slide">
+  <div class="game-screen-mini" style="margin-bottom:10px;">
+    <div style="display:flex; gap:6px; justify-content:center;">
+      <div style="background:rgba(255,255,255,0.85); border-radius:6px; padding:3px 8px; border:1.5px solid #E57373; flex:1; text-align:center;">
+        <div style="font-size:0.65em; color:#666;">相手</div>
+        <div style="font-size:1.3em; letter-spacing:2px;">🏰🏠🏠</div>
+        <div style="font-weight:900; color:var(--orange); font-size:0.9em;">8 pt</div>
+      </div>
+      <div style="display:flex; align-items:center; font-weight:900; color:#555; font-size:0.8em;">VS</div>
+      <div style="background:rgba(255,255,255,0.85); border-radius:6px; padding:3px 8px; border:1.5px solid var(--blue); flex:1; text-align:center;">
+        <div style="font-size:0.65em; color:#666;">自分</div>
+        <div style="font-size:1.3em; letter-spacing:2px;">🏠🏠</div>
+        <div style="font-weight:900; color:var(--orange); font-size:0.9em;">6 pt</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:3px; justify-content:center; margin-top:4px;">
+      <div style="flex:1; border-radius:6px; padding:3px 2px; text-align:center; font-weight:700; color:#fff; font-size:0.7em; background:linear-gradient(135deg,var(--green),#4CAF50);">
+        <span style="font-size:1em; display:block;">🏗️</span>ビルド
+      </div>
+      <div style="flex:1; border-radius:6px; padding:3px 2px; text-align:center; font-weight:700; color:#fff; font-size:0.7em; background:linear-gradient(135deg,var(--orange),#E65100);">
+        <span style="font-size:1em; display:block;">💥</span>ブレイク
+      </div>
+      <div style="flex:1; border-radius:6px; padding:3px 2px; text-align:center; font-weight:700; color:#fff; font-size:0.7em; background:linear-gradient(135deg,var(--blue),#1976D2);">
+        <span style="font-size:1em; display:block;">🛡️</span>ガード
+      </div>
+    </div>
+  </div>
+  <h1>ビルドブレイカーズ</h1>
+  <div class="subtitle" style="font-size:0.85em; color:#555; font-weight:700; margin-top:4px;">
+    「城を建てて、読んで、壊す。」3分間の陣地バトルスポーツ
+  </div>
+  <div style="margin-top:10px;">
+    <span class="tag tag-orange">小学3年生</span>
+    <span class="tag tag-blue">3分</span>
+    <span class="tag tag-green">架空のスポーツ</span>
+    <span class="tag tag-dark">1v1</span>
+  </div>
+  <div class="author">
+    応募者: <strong>内山 茂樹</strong> ／ 応募職種: プランナー<br>
+    <span class="small">2026年3月</span>
+  </div>
+</section>
+
+<!-- SLIDE 2: Concept -->
+<section>
+  <h2>コンセプト</h2>
+  <div class="concept-quote" style="padding:14px 20px; font-size:0.85em; line-height:1.5; margin:10px 0;">
+    「読みが当たって相手の城が吹き飛ぶ<span style="font-size:1.1em;">爽快感</span>」<br>と<br>
+    「裏をかかれて自分の城が壊れる<span style="font-size:1.1em;">悔しさ</span>」
+  </div>
+  <div class="card" style="text-align:center; font-size:0.7em; line-height:1.6; padding:12px 16px;">
+    この2つの感情を<strong style="color:var(--orange);">3分間で7〜8回</strong>味わう<br>
+    1v1の陣地バトルスポーツ。<br><br>
+    じゃんけんのように3つの手から1つを選んで同時に出す。<br>
+    ただし<strong style="color:var(--blue);">お互いの陣地が見えている</strong>から、<br>
+    <strong>読み合いに「根拠」がある。</strong>
+  </div>
+</section>
+
+<!-- SLIDE 3: Theme & Target (with life scenes) -->
+<section>
+  <h2>テーマとターゲット</h2>
+  <div class="card" style="text-align:center; margin-bottom:6px; padding:8px 16px;">
+    <div style="font-size:0.65em; color:#666;">どんなプレイヤーに</div>
+    <div style="font-size:1em; font-weight:900; color:var(--orange);">小学校3年生（8〜9歳）</div>
+    <div style="font-size:0.6em; margin-top:4px; color:#555; line-height:1.4;">
+      「じゃんけんは運だけ」と思っている子どもたちに<strong>「相手の考えを読んで裏をかく楽しさ」</strong>に気づかせる
+    </div>
+  </div>
+  <table class="styled-table" style="font-size:0.55em;">
+    <tr><th style="width:40%; padding:5px 8px;">この年齢の特徴</th><th style="padding:5px 8px;">企画への反映</th></tr>
+    <tr><td style="padding:4px 8px;">じゃんけんに慣れている</td><td style="padding:4px 8px;">3すくみの同時出しで<strong>即座に理解</strong>できる</td></tr>
+    <tr><td style="padding:4px 8px;">リアクションが大きい</td><td style="padding:4px 8px;">城が吹き飛ぶ/豪華になる<strong>派手な演出</strong></td></tr>
+    <tr><td style="padding:4px 8px;">複雑なルールは覚えられない</td><td style="padding:4px 8px;">「3つから1つ選ぶ」だけ。<strong>覚える必要なし</strong></td></tr>
+    <tr><td style="padding:4px 8px;">予測する楽しさを覚える年齢</td><td style="padding:4px 8px;">公開情報が<strong>読み合いの根拠</strong>を与える</td></tr>
+  </table>
+  <div style="text-align:center; font-weight:900; font-size:0.6em; color:var(--orange); margin-top:6px;">
+    3分だからこそ、あらゆる隙間時間にフィットする
+  </div>
+  <div class="life-scene">
+    <div class="scene-card">
+      <div class="scene-emoji">🏫</div>
+      <strong>休み時間に友達と</strong><br>
+      <span class="scene-quote">「お前また攻撃だろ！」</span><br>
+      と盛り上がる対面対戦
+    </div>
+    <div class="scene-card">
+      <div class="scene-emoji">🏠</div>
+      <strong>帰宅後にオンラインで</strong><br>
+      学校の友達と<br>
+      <span class="scene-quote">リモートで再戦</span>
+    </div>
+    <div class="scene-card">
+      <div class="scene-emoji">🚗</div>
+      <strong>待ち時間に1人で</strong><br>
+      AI対戦で<br>
+      <span class="scene-quote">新しい戦略を試す</span>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Game Screen Mockup (full) -->
+<section>
+  <h2>ゲーム画面</h2>
+  <div class="game-screen" style="max-width:350px; padding:10px 14px; font-size:0.55em;">
+    <div class="game-zone game-zone-enemy" style="padding:5px 8px;">
+      <div class="label" style="font-size:0.7em;">相手の陣地</div>
+      <div class="buildings" style="font-size:1.4em; letter-spacing:3px; margin:2px 0;">🏰🏠🏠</div>
+      <div class="pts" style="font-size:0.85em;">8 pt</div>
+    </div>
+    <div style="text-align:center; font-size:0.6em; padding:3px 0; background:rgba(0,0,0,0.04); border-radius:6px; margin:3px 8px; letter-spacing:1px;">
+      相手の履歴: <span style="font-size:1.1em;">🏗️</span> <span style="font-size:1.1em;">💥</span> <span style="font-size:1.1em;">💥</span> <span style="font-size:1.1em;">🏗️</span> <span style="font-size:1.1em; color:#999;">❓</span>
+      <span style="color:#999; margin-left:3px; font-size:0.8em;">R1 R2 R3 R4 R5</span>
+    </div>
+    <div class="game-info" style="padding:2px 0; font-size:0.75em;">
+      <div>ラウンド <strong>5</strong> / 8</div>
+      <div class="timer" style="font-size:1em;">残り 1:42</div>
+    </div>
+    <div class="game-zone game-zone-self" style="padding:5px 8px;">
+      <div class="label" style="font-size:0.7em;">自分の陣地</div>
+      <div class="buildings" style="font-size:1.4em; letter-spacing:3px; margin:2px 0;">🏠🏠</div>
+      <div class="pts" style="font-size:0.85em;">6 pt</div>
+    </div>
+    <div class="action-buttons" style="margin-top:4px; gap:4px;">
+      <div class="action-btn btn-build" style="padding:5px 3px; font-size:0.7em; border-radius:8px;">
+        <span class="emoji" style="font-size:1.1em;">🏗️</span>
+        ビルド
+        <span class="effect" style="font-size:0.65em;">自分+2pt</span>
+      </div>
+      <div class="action-btn btn-break" style="padding:5px 3px; font-size:0.7em; border-radius:8px;">
+        <span class="emoji" style="font-size:1.1em;">💥</span>
+        ブレイク
+        <span class="effect" style="font-size:0.65em;">相手-3pt</span>
+      </div>
+      <div class="action-btn btn-guard" style="padding:5px 3px; font-size:0.7em; border-radius:8px;">
+        <span class="emoji" style="font-size:1.1em;">🛡️</span>
+        ガード
+        <span class="effect" style="font-size:0.65em;">跳ね返し</span>
+      </div>
+    </div>
+    <div class="game-countdown" style="font-size:0.7em; margin-top:3px; padding:2px;">選択まで あと <strong>12秒</strong></div>
+  </div>
+  <p class="small center" style="margin-top:6px; font-size:0.55em;">上に相手 / 下に自分 → 「相手の城を見上げて壊したい」感情を画面で作る</p>
+</section>
+
+<!-- SLIDE 5: Rules & Compatibility (3すくみ + matrix merged) -->
+<section>
+  <h2>ルールと相性</h2>
+  <div style="display:flex; gap:14px; align-items:start; justify-content:center;">
+    <!-- Left: 3すくみ diagram (compact) -->
+    <div style="flex:0 0 auto;">
+      <div style="position:relative; width:240px; height:240px;">
+        <svg viewBox="0 0 280 280" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <defs>
+            <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#FF8C42"/>
+            </marker>
+          </defs>
+          <path d="M 110 75 Q 60 130 55 175" fill="none" stroke="#FF8C42" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+          <path d="M 95 235 Q 140 265 180 235" fill="none" stroke="#FF8C42" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+          <path d="M 225 180 Q 220 125 165 75" fill="none" stroke="#FF8C42" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+        </svg>
+        <!-- Nodes -->
+        <div style="position:absolute; top:4px; left:77px; width:78px; height:78px; border-radius:50%; background:linear-gradient(135deg,var(--orange),#E65100); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:0.6em; box-shadow:0 3px 12px rgba(0,0,0,0.2);">
+          <span style="font-size:1.4em;">💥</span>
+          ブレイク
+        </div>
+        <div style="position:absolute; top:158px; left:0; width:78px; height:78px; border-radius:50%; background:linear-gradient(135deg,var(--green),#4CAF50); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:0.6em; box-shadow:0 3px 12px rgba(0,0,0,0.2);">
+          <span style="font-size:1.4em;">🏗️</span>
+          ビルド
+        </div>
+        <div style="position:absolute; top:158px; right:0; width:78px; height:78px; border-radius:50%; background:linear-gradient(135deg,var(--blue),#1976D2); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:0.6em; box-shadow:0 3px 12px rgba(0,0,0,0.2);">
+          <span style="font-size:1.4em;">🛡️</span>
+          ガード
+        </div>
+        <!-- Edge labels -->
+        <div style="position:absolute; top:98px; left:-5px; font-size:0.45em; font-weight:700; color:#E65100; width:70px; text-align:center;">
+          攻撃は<br>建築に勝つ
+        </div>
+        <div style="position:absolute; top:98px; right:-5px; font-size:0.45em; font-weight:700; color:#1565C0; width:70px; text-align:center;">
+          防御は<br>攻撃に勝つ
+        </div>
+        <div style="position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:0.45em; font-weight:700; color:#388E3C; width:90px; text-align:center;">
+          建築は防御に勝つ
+        </div>
+      </div>
+    </div>
+    <!-- Right: Matrix table -->
+    <div style="flex:1; min-width:0;">
+      <table class="matrix-table" style="font-size:0.5em;">
+        <tr>
+          <th class="corner" style="padding:4px 3px;">自分 ＼ 相手</th>
+          <th class="col-head" style="padding:4px 3px;">🏗️ 建築</th>
+          <th class="col-head" style="padding:4px 3px;">💥 攻撃</th>
+          <th class="col-head" style="padding:4px 3px;">🛡️ 防御</th>
+        </tr>
+        <tr>
+          <th class="row-head" style="padding:4px 3px;">🏗️ 建築</th>
+          <td class="draw" style="padding:4px 3px;">両方 +2pt<br><span style="font-size:0.8em;">🏗️ = 🏗️</span></td>
+          <td class="special" style="padding:4px 3px;">自分 <strong>-3pt</strong><br><span style="font-size:0.8em;">壊された!</span></td>
+          <td class="win" style="padding:4px 3px;">自分 <strong>+2pt</strong><br><span style="font-size:0.8em;">🏗️ &gt; 🛡️</span></td>
+        </tr>
+        <tr>
+          <th class="row-head" style="padding:4px 3px;">💥 攻撃</th>
+          <td class="win" style="padding:4px 3px;">相手 <strong>-3pt</strong><br><span style="font-size:0.8em;">ドカーン!</span></td>
+          <td class="draw" style="padding:4px 3px;">両方 -1pt<br><span style="font-size:0.8em;">共倒れ</span></td>
+          <td class="special" style="padding:4px 3px;">自分 <strong>-3pt</strong><br><span style="font-size:0.8em;">跳ね返し!</span></td>
+        </tr>
+        <tr>
+          <th class="row-head" style="padding:4px 3px;">🛡️ 防御</th>
+          <td class="lose" style="padding:4px 3px;">相手 +2pt<br><span style="font-size:0.8em;">守り損…</span></td>
+          <td class="win" style="padding:4px 3px;">相手 <strong>-3pt</strong><br><span style="font-size:0.8em;">跳ね返し!</span></td>
+          <td class="draw" style="padding:4px 3px;">何も起きない<br><span style="font-size:0.8em;">しーん…</span></td>
+        </tr>
+      </table>
+      <div class="point-cards" style="margin-top:6px;">
+        <div class="point-card" style="min-width:100px; max-width:140px; font-size:0.48em; padding:5px 8px;"><strong>攻撃成功(-3) &gt; 建築(+2)</strong><br>攻めたくなる設計</div>
+        <div class="point-card" style="min-width:100px; max-width:140px; font-size:0.48em; padding:5px 8px;"><strong>防御成功 → 相手-3pt</strong><br>守りにも達成感</div>
+        <div class="point-card" style="min-width:100px; max-width:140px; font-size:0.48em; padding:5px 8px;"><strong>攻撃vs攻撃 = 損</strong><br>読み合いを促す</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: Why it's more fun than janken (with "why digital") -->
+<section>
+  <h2>駆け引きの構造</h2>
+  <h3 class="accent-orange" style="text-align:center; margin-bottom:4px; font-size:0.75em;">なぜじゃんけんより面白いか</h3>
+
+  <div class="card-row" style="margin-top:4px; gap:8px;">
+    <div class="card" style="border-top:3px solid var(--orange); padding:8px 10px;">
+      <div style="font-weight:900; font-size:0.65em; text-align:center; color:var(--orange);">1. 陣地の差が「読みの根拠」</div>
+      <div style="font-size:0.55em; margin-top:4px; line-height:1.4; color:#555;">
+        リード側 →「守りたい」→ 防御<br>
+        負け側 →「逆転したい」→ 攻撃<br>
+        → さらに裏をかいて建築…<br>
+        <strong>推測の連鎖</strong>が思考の差を生む
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue); padding:8px 10px;">
+      <div style="font-weight:900; font-size:0.65em; text-align:center; color:var(--blue);">2.「読みの過程」が目に見える</div>
+      <div style="font-size:0.55em; margin-top:4px; line-height:1.4; color:#555;">
+        相手の過去の選択が<strong>履歴アイコン</strong>で表示<br>
+        <span style="font-size:1em;">🏗️💥💥🏗️❓</span><br>
+        「攻撃が多い→次も攻撃？→防御だ！」<br>
+        この<strong style="color:var(--blue);">思考の過程</strong>こそがスポーツ
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green); padding:8px 10px;">
+      <div style="font-weight:900; font-size:0.65em; text-align:center; color:var(--green);">3. 攻めるリスクが常にある</div>
+      <div style="font-size:0.55em; margin-top:4px; line-height:1.4; color:#555;">
+        攻撃は当たれば相手<strong>-3pt</strong><br>
+        防御されれば自分<strong>-3pt</strong><br>
+        安全に建築し続けても差がつかない<br>
+        → <strong>いつかは攻めないと勝てない</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-digital" style="margin-top:6px; padding:6px 10px; font-size:0.5em; line-height:1.4;">
+    <strong style="color:var(--blue); font-size:1.05em;">なぜデジタルか？</strong><br>
+    <span style="color:var(--blue); font-weight:700;">①</span> 相手の選択履歴を<strong>自動記録・表示</strong>（アナログでは覚えきれない）
+    <span style="color:var(--blue); font-weight:700;">②</span> 陣地の変化を<strong>視覚演出で感情増幅</strong>（城が吹き飛ぶ快感はデジタルならでは）
+    <span style="color:var(--blue); font-weight:700;">③</span> <strong>マッチメイキング</strong>で対戦相手がいつでも見つかる
+  </div>
+</section>
+
+<!-- SLIDE 7: Special Build (with timing rationale) + Round Flow (compact) -->
+<section>
+  <h2 style="margin-bottom:0.3em;">スペシャル建築 ＆ 1ラウンドの流れ</h2>
+
+  <!-- Special Build -->
+  <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
+    <div class="card" style="max-width:140px; text-align:center; border:2px solid var(--orange); padding:4px 8px;">
+      <div style="font-size:0.45em; color:#999;">通常の建築</div>
+      <div style="font-size:1.1em; margin:1px 0;">🏗️</div>
+      <div style="font-size:0.85em; font-weight:900; color:var(--green);">+2pt</div>
+    </div>
+    <div style="font-size:1em; color:var(--orange); font-weight:900;">VS</div>
+    <div class="card" style="max-width:160px; text-align:center; border:2px solid #FFD700; background:linear-gradient(135deg,#FFFDE7,#FFF8E1); padding:4px 8px;">
+      <div style="font-size:0.45em; color:#999;">スペシャル建築 ⭐</div>
+      <div style="font-size:1.1em; margin:1px 0;">👑🏗️✨</div>
+      <div style="font-size:0.85em; font-weight:900; color:var(--orange);">+4pt</div>
+      <div style="font-size:0.45em; color:#C62828; font-weight:700;">ただし攻撃されると <strong>-5pt</strong></div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:4px; padding:4px 10px; font-size:0.5em; line-height:1.3;">
+    <strong>4ラウンド目に1回だけ解放 → 試合中盤の「1回だけの大勝負」</strong><br>
+    <span style="font-size:0.9em; color:#555;">なぜ4ラウンド目か: 序盤3ラウンドで相手のクセを観察 → 4ラウンド目で「読み」が効き始める。<strong style="color:var(--orange);">最も駆け引きが深まるタイミングにクライマックスを配置</strong></span>
+  </div>
+
+  <!-- Compact Round Flow -->
+  <div style="margin-top:4px; border-top:2px solid #f0e8d8; padding-top:4px;">
+    <h3 style="font-size:0.65em; margin-bottom:2px;">1ラウンドの流れ</h3>
+    <div class="flow-steps-compact">
+      <div class="flow-step-compact" style="border-top:3px solid var(--green); padding:4px 6px;">
+        <div class="step-num-sm" style="background:var(--green);">1</div>
+        <div class="step-title-sm" style="font-size:0.55em;">選択フェーズ</div>
+        <div style="font-size:0.45em; color:#999; font-weight:700;">15秒</div>
+        <div style="font-size:0.85em; margin:1px 0;">🤔</div>
+        <div class="step-desc-sm" style="font-size:0.4em;">
+          3つから1つ選ぶ。<strong style="color:var(--orange);">読み合いの核</strong>
+        </div>
+      </div>
+      <div class="flow-arrow-sm">→</div>
+      <div class="flow-step-compact" style="border-top:3px solid var(--orange); padding:4px 6px;">
+        <div class="step-num-sm" style="background:var(--orange);">2</div>
+        <div class="step-title-sm" style="font-size:0.55em;">同時オープン</div>
+        <div style="font-size:0.45em; color:#999; font-weight:700;">2秒</div>
+        <div style="font-size:0.85em; margin:1px 0;">⚡</div>
+        <div class="step-desc-sm" style="font-size:0.4em;">
+          両者の選択が画面中央に<strong>ドン!</strong>
+        </div>
+      </div>
+      <div class="flow-arrow-sm">→</div>
+      <div class="flow-step-compact" style="border-top:3px solid var(--blue); padding:4px 6px;">
+        <div class="step-num-sm" style="background:var(--blue);">3</div>
+        <div class="step-title-sm" style="font-size:0.55em;">結果演出</div>
+        <div style="font-size:0.45em; color:#999; font-weight:700;">5秒</div>
+        <div style="font-size:0.85em; margin:1px 0;">🎬</div>
+        <div class="step-desc-sm" style="font-size:0.4em;">
+          💥粉々 🛡️跳ね返し <strong>デカい数字</strong>
+        </div>
+      </div>
+    </div>
+    <p class="small center" style="margin-top:1px; font-size:0.45em;">1ラウンド約22秒 &times; 7〜8回 = 3分の試合</p>
+  </div>
+</section>
+
+<!-- SLIDE 8: Territory strip + Appeal points -->
+<section>
+  <h2>まとめ</h2>
+
+  <!-- Compact territory strip -->
+  <div style="background:#fff; border-radius:10px; padding:4px 10px; box-shadow:0 2px 6px rgba(0,0,0,0.06); margin-bottom:6px;">
+    <div style="text-align:center; font-weight:900; font-size:0.52em; color:var(--orange); margin-bottom:1px;">陣地の変化 — ポイントに応じて見た目が進化し、達成感を演出</div>
+    <div class="territory-strip">
+      <div class="ts-stage">
+        <div class="ts-visual" style="font-size:0.85em; height:22px;">🌿</div>
+        <div class="ts-label" style="font-size:0.5em;">空き地</div>
+        <div class="ts-pts" style="font-size:0.4em;">0〜3pt</div>
+      </div>
+      <div class="ts-arrow" style="font-size:0.55em;">→</div>
+      <div class="ts-stage">
+        <div class="ts-visual" style="font-size:0.85em; height:22px;">🏠🏠</div>
+        <div class="ts-label" style="font-size:0.5em;">街</div>
+        <div class="ts-pts" style="font-size:0.4em;">4〜7pt</div>
+      </div>
+      <div class="ts-arrow" style="font-size:0.55em;">→</div>
+      <div class="ts-stage">
+        <div class="ts-visual" style="font-size:0.85em; height:22px;">🏰🚩</div>
+        <div class="ts-label" style="font-size:0.5em;">城</div>
+        <div class="ts-pts" style="font-size:0.4em;">8〜11pt</div>
+      </div>
+      <div class="ts-arrow" style="font-size:0.55em;">→</div>
+      <div class="ts-stage">
+        <div class="ts-visual" style="font-size:0.85em; height:22px;">👑🏛️🎆</div>
+        <div class="ts-label" style="font-size:0.5em; color:#DAA520;">宮殿</div>
+        <div class="ts-pts" style="font-size:0.4em;">12pt〜</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:6px; justify-content:center; font-size:0.42em; color:#666;">
+      <span>💥🏰→💨 城が粉々に砕ける</span> | <span>💥→🛡️→💥 攻撃が跳ね返る</span> | <span>🎵🏠📈 建物がニョキニョキ</span>
+    </div>
+  </div>
+
+  <!-- Appeal points -->
+  <ul class="appeal-list" style="margin-top:3px;">
+    <li style="padding:3px 10px;">
+      <span class="appeal-icon" style="font-size:0.9em;">🎯</span>
+      <div style="font-size:0.5em;"><strong>ルールは3秒で理解できる</strong><br>じゃんけんと同じ3すくみ。小学3年生でも即座に遊べる</div>
+    </li>
+    <li style="padding:3px 10px;">
+      <span class="appeal-icon" style="font-size:0.9em;">🧠</span>
+      <div style="font-size:0.5em;"><strong>じゃんけんにはない「過程」がある</strong><br>相手の履歴を分析→傾向を読む→裏をかく。15秒の思考がスポーツの核心</div>
+    </li>
+    <li style="padding:3px 10px;">
+      <span class="appeal-icon" style="font-size:0.9em;">⚡</span>
+      <div style="font-size:0.5em;"><strong>3分で「もう1回！」</strong> — 7〜8ラウンドで1試合。すぐ再戦できる</div>
+    </li>
+    <li style="padding:3px 10px;">
+      <span class="appeal-icon" style="font-size:0.9em;">🎨</span>
+      <div style="font-size:0.5em;"><strong>見た目が楽しい</strong> — 城が育つ達成感と、城が吹き飛ぶ爽快感</div>
+    </li>
+  </ul>
+  <div class="concept-quote" style="margin-top:4px; font-size:0.65em; padding:8px 16px; line-height:1.4;">
+    「やった！」と「うわー！」が3分間で7〜8回。<br>
+    シンプルなルールから生まれる、深い読み合い体験。
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 960,
+    height: 700,
+    margin: 0.04,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+  });
+</script>
+</body>
+</html>

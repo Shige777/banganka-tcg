@@ -1,0 +1,54 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.pidb
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb.meta
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.apk
+*.aab
+*.unitypackage
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# Firebase (NEVER commit these)
+**/GoogleService-Info.plist
+**/google-services.json
+**/google-services-desktop.json
+.firebaserc
+firebase-debug.log
+
+# Node
+node_modules/
+functions/lib/
+
+# Secrets
+*.p8
+*.p12
+*.pem
+*.env
+*.env.*

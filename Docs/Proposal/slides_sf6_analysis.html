@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ゲーム分析レポート — ストリートファイター6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  :root {
+    --bg-dark: #1a1a2e;
+    --bg-card: #16213e;
+    --accent: #e94560;
+    --accent-light: #ff6b81;
+    --text-main: #eaeaea;
+    --text-sub: #a0a0b8;
+    --gauge-green: #59C36A;
+    --gauge-yellow: #F4C542;
+    --gauge-red: #e94560;
+  }
+
+  .reveal-viewport {
+    background: var(--bg-dark);
+  }
+
+  .reveal {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text-main);
+  }
+
+  .reveal .slides section {
+    overflow: hidden;
+  }
+
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #fff;
+    text-transform: none;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  }
+
+  .reveal h1 { font-size: 1.6em; margin-bottom: 0.1em; }
+  .reveal h2 { font-size: 1.2em; margin-bottom: 0.3em; }
+  .reveal h3 { font-size: 0.85em; color: var(--accent-light); margin-bottom: 0.2em; }
+
+  .reveal p, .reveal li {
+    font-size: 0.6em;
+    line-height: 1.5;
+    color: var(--text-main);
+  }
+
+  .reveal ul { list-style: none; padding-left: 0; margin: 0.2em 0; }
+  .reveal ul li::before {
+    content: "\25B8";
+    color: var(--accent);
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+  .reveal ul li { margin-bottom: 0.1em; }
+
+  .reveal .accent { color: var(--accent); font-weight: 700; }
+  .reveal .highlight-box {
+    background: rgba(233, 69, 96, 0.12);
+    border-left: 4px solid var(--accent);
+    padding: 0.35em 0.7em;
+    margin: 0.3em 0;
+    border-radius: 4px;
+    font-size: 0.58em;
+  }
+
+  .reveal .card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 0.5em 0.7em;
+    margin: 0.3em;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .reveal .two-col {
+    display: flex;
+    gap: 0.8em;
+    align-items: stretch;
+  }
+  .reveal .two-col > * { flex: 1; }
+
+  .reveal .subtitle {
+    font-size: 0.55em;
+    color: var(--text-sub);
+    margin-top: 0.2em;
+  }
+
+  /* Title slide */
+  .title-slide h1 {
+    font-size: 2.0em;
+    margin-bottom: 0.1em;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .title-slide .game-title {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: var(--accent);
+    margin: 0.2em 0;
+  }
+  .title-slide .hook {
+    font-size: 0.75em;
+    font-weight: 900;
+    color: var(--accent);
+    margin: 0.4em auto;
+    max-width: 700px;
+    line-height: 1.5;
+    padding: 0.3em 0.5em;
+    border: 2px solid rgba(233,69,96,0.4);
+    border-radius: 8px;
+    background: rgba(233,69,96,0.08);
+  }
+  .title-slide .author {
+    font-size: 0.7em;
+    color: var(--text-sub);
+    margin-top: 0.6em;
+  }
+  .title-slide .author p {
+    margin: 0.1em 0;
+  }
+  .title-slide .divider {
+    width: 100px;
+    height: 3px;
+    background: var(--accent);
+    margin: 0.5em auto;
+    border-radius: 2px;
+  }
+
+  /* Control diagram */
+  .control-diagram {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 0.4em;
+  }
+  .control-panel {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 0.5em 0.7em;
+    min-width: 200px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .control-panel h4 {
+    font-size: 0.7em;
+    margin: 0 0 0.3em 0;
+    text-align: center;
+  }
+  .control-panel.modern { border-top: 3px solid #4DA3FF; }
+  .control-panel.modern h4 { color: #4DA3FF; }
+  .control-panel.classic { border-top: 3px solid var(--accent); }
+  .control-panel.classic h4 { color: var(--accent); }
+
+  .btn-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 4px 0;
+  }
+  .btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.4em;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .btn.light  { background: #3a7bd5; }
+  .btn.medium { background: #d4a017; }
+  .btn.heavy  { background: #c0392b; }
+  .btn.sp     { background: #8e44ad; }
+  .btn.assist { background: #27ae60; }
+  .btn.di     { background: #e67e22; }
+  .btn.empty  { background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.2); }
+
+  .btn-label {
+    font-size: 0.42em;
+    color: var(--text-sub);
+    text-align: center;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* Arrow between panels */
+  .arrow-between {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55em;
+    color: var(--text-sub);
+    gap: 0.2em;
+  }
+  .arrow-between .arrow-icon {
+    font-size: 1.6em;
+    color: var(--accent);
+  }
+
+  /* Drive gauge */
+  .drive-gauge-container {
+    margin: 0.3em auto;
+    max-width: 520px;
+  }
+  .drive-gauge {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin: 0.3em 0;
+    height: 24px;
+  }
+  .drive-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+    border-radius: 3px;
+    transition: all 0.5s ease;
+    position: relative;
+    max-width: 55px;
+  }
+  .drive-bar.consumed {
+    background: linear-gradient(180deg, #555 0%, #333 100%);
+    opacity: 0.4;
+  }
+  .drive-bar.burnout {
+    background: linear-gradient(180deg, var(--gauge-red) 0%, #a03040 100%);
+    animation: burnout-pulse 1s ease-in-out infinite;
+  }
+  @keyframes burnout-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
+  }
+
+  .gauge-action-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.4em;
+    justify-content: center;
+    margin-top: 0.3em;
+  }
+  .gauge-action {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 0.25em 0.5em;
+    font-size: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .gauge-action .cost {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.05em 0.3em;
+    font-weight: 700;
+    font-size: 0.85em;
+  }
+
+  /* Floor/Ceiling diagram */
+  .floor-ceiling {
+    position: relative;
+    width: 480px;
+    height: 200px;
+    margin: 0.5em auto;
+  }
+
+  /* HP gauge */
+  .hp-gauge-demo {
+    margin: 0.5em auto;
+    max-width: 500px;
+  }
+  .hp-bar-wrap {
+    background: #222;
+    border-radius: 6px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+    margin: 0.3em 0;
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .hp-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+  .hp-bar-fill.green { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+  .hp-bar-fill.yellow { background: linear-gradient(90deg, #d4a017, #F4C542); }
+  .hp-bar-fill.red { background: linear-gradient(90deg, #a03040, var(--accent)); }
+  .hp-bar-fill.ambiguous {
+    background: linear-gradient(90deg, #a03040, var(--accent));
+    filter: blur(1px);
+  }
+  .hp-no-number {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5em;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.5em;
+  }
+  .hp-question {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.5em;
+    color: var(--text-sub);
+    margin-top: 0.2em;
+  }
+
+  /* Summary list */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5em;
+    margin-top: 0.3em;
+  }
+  .summary-item {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 0.4em;
+    text-align: center;
+    border-top: 3px solid var(--accent);
+  }
+  .summary-item .num {
+    font-size: 1.2em;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .summary-item .label {
+    font-size: 0.48em;
+    color: var(--text-sub);
+    margin-top: 0.1em;
+  }
+  .summary-item .desc {
+    font-size: 0.42em;
+    color: var(--text-main);
+    margin-top: 0.15em;
+    line-height: 1.4;
+  }
+
+  /* Pokemon note box */
+  .pokemon-note {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4DA3FF;
+    padding: 0.3em 0.6em;
+    margin: 0.3em auto 0;
+    max-width: 620px;
+    border-radius: 4px;
+    font-size: 0.42em;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+
+  /* Proposal slide */
+  .proposal-concept {
+    font-size: 0.78em;
+    font-weight: 900;
+    color: var(--accent);
+    text-align: center;
+    padding: 0.3em;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    margin: 0.3em auto;
+    max-width: 600px;
+    background: rgba(233,69,96,0.08);
+  }
+
+  .step-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+    margin: 0.3em 0;
+    flex-wrap: nowrap;
+  }
+  .step-box {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 0.25em 0.4em;
+    font-size: 0.48em;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 75px;
+  }
+  .step-box.problem { border-color: var(--gauge-red); }
+  .step-arrow {
+    font-size: 0.9em;
+    color: var(--text-sub);
+  }
+
+  /* Diff table */
+  .diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.48em;
+    margin-top: 0.3em;
+  }
+  .diff-table th {
+    background: rgba(233,69,96,0.2);
+    padding: 0.25em 0.5em;
+    text-align: left;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 2px solid var(--accent);
+  }
+  .diff-table td {
+    padding: 0.25em 0.5em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-main);
+  }
+  .diff-table tr:nth-child(even) td {
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* Print styles */
+  @media print {
+    .reveal .slides section {
+      page-break-after: always;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- Slide 1: Title -->
+<section class="title-slide">
+  <div style="margin-top: 0.3em;">
+    <h1>ゲーム分析レポート</h1>
+    <div class="divider"></div>
+    <div class="game-title">ストリートファイター6</div>
+    <div class="hook">
+      「面白さを変えずに、障壁だけを壊す」<br>
+      <span style="font-size:0.7em; font-weight:700; color:var(--text-main);">SF6が格闘ゲーム30年の壁を破った設計を解剖する</span>
+    </div>
+    <div class="author">
+      <p>内山 茂樹</p>
+      <p style="font-size:0.8em; color: #666;">応募職種: プランナー &mdash; 2026年3月</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 2: Game Overview -->
+<section>
+  <h2>ゲーム概要とコンセプト</h2>
+  <div class="two-col">
+    <div class="card">
+      <h3>ゲーム概要</h3>
+      <ul>
+        <li>2023年6月発売 / PS5・PS4・Xbox・PC</li>
+        <li>カプコン開発の1v1対戦格闘ゲーム</li>
+        <li>シリーズ累計<span class="accent">5,000万本</span>超</li>
+        <li>格闘ゲームの代表的フランチャイズ最新作</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>コンセプト</h3>
+      <div class="highlight-box" style="font-size:1em;">
+        格闘ゲームの面白さを、<span class="accent">全員に</span>届ける
+      </div>
+      <p style="font-size:0.55em; margin-top:0.3em; color: var(--text-sub);">
+        「1対1の読み合い」は本質的に面白い。しかし初心者は技術的ハードルで脱落していた。<br>
+        SF6は<strong>面白さに到達するまでの障壁だけを取り除く</strong>設計で解決した。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 3: Modern vs Classic -->
+<section>
+  <h2>面白い要素 <span class="accent">&numero;1</span><br>モダン/クラシック操作 &mdash; 敷居と天井の分離</h2>
+
+  <!-- Control Layout Diagram -->
+  <div class="control-diagram">
+    <div class="control-panel modern">
+      <h4>Modern (モダン)</h4>
+      <div class="btn-row">
+        <div class="btn light">弱</div>
+        <div class="btn medium">中</div>
+        <div class="btn heavy">強</div>
+      </div>
+      <div class="btn-row">
+        <div class="btn sp">SP</div>
+        <div class="btn assist">アシ<br>スト</div>
+        <div class="btn di">DI</div>
+      </div>
+      <div class="btn-label">SPボタン + 方向 = 必殺技<br>アシスト + ボタン = 自動コンボ</div>
+      <div style="font-size:0.42em; color:#4DA3FF; margin-top:0.3em; text-align:center; font-weight:700;">
+        ワンボタンで必殺技が出せる
+      </div>
+    </div>
+
+    <div class="arrow-between">
+      <span style="font-size:0.75em;">上達に応じて</span>
+      <span class="arrow-icon">&rlarr;</span>
+      <span style="font-size:0.75em;">自然に移行</span>
+    </div>
+
+    <div class="control-panel classic">
+      <h4>Classic (クラシック)</h4>
+      <div class="btn-row">
+        <div class="btn light">弱P</div>
+        <div class="btn medium">中P</div>
+        <div class="btn heavy">強P</div>
+      </div>
+      <div class="btn-row">
+        <div class="btn light">弱K</div>
+        <div class="btn medium">中K</div>
+        <div class="btn heavy">強K</div>
+      </div>
+      <div class="btn-label">コマンド入力で必殺技<br>全技にアクセス可能</div>
+      <div style="font-size:0.42em; color:var(--accent); margin-top:0.3em; text-align:center; font-weight:700;">
+        全選択肢 + ダメージ若干高
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="max-width:600px; margin: 0.3em auto; text-align:center;">
+    モダンは「簡易版」ではなく<span class="accent">「最初から同じ対戦を体験できる入口」</span>。<br>
+    操作の敷居を下げても、判断の天井は変わらない。
+  </div>
+</section>
+
+<!-- Slide 4: Drive System -->
+<section>
+  <h2>面白い要素 <span class="accent">&numero;2</span><br>ドライブシステム &mdash; 攻守を1つのリソースで管理</h2>
+
+  <div class="drive-gauge-container">
+    <div style="font-size:0.5em; color: var(--text-sub); text-align:center; margin-bottom:0.2em;">DRIVE GAUGE</div>
+    <div class="drive-gauge">
+      <div class="drive-bar"></div>
+      <div class="drive-bar"></div>
+      <div class="drive-bar"></div>
+      <div class="drive-bar"></div>
+      <div class="drive-bar"></div>
+      <div class="drive-bar"></div>
+    </div>
+
+    <div class="gauge-action-list">
+      <div class="gauge-action">
+        <span class="cost">2本</span>
+        <span>ドライブインパクト<br><small style="color:var(--text-sub);">アーマー付き強攻撃</small></span>
+      </div>
+      <div class="gauge-action">
+        <span class="cost" style="background:#d4a017;">継続</span>
+        <span>ドライブパリィ<br><small style="color:var(--text-sub);">全技対応の防御</small></span>
+      </div>
+      <div class="gauge-action">
+        <span class="cost">3本</span>
+        <span>ドライブラッシュ<br><small style="color:var(--text-sub);">攻めの起点</small></span>
+      </div>
+    </div>
+
+    <!-- Burnout state -->
+    <div style="margin-top: 0.4em;">
+      <div style="font-size:0.5em; color: var(--accent); text-align:center; font-weight:700; margin-bottom:0.2em;">BURNOUT (ゲージ 0)</div>
+      <div class="drive-gauge">
+        <div class="drive-bar burnout"></div>
+        <div class="drive-bar burnout"></div>
+        <div class="drive-bar burnout"></div>
+        <div class="drive-bar burnout"></div>
+        <div class="drive-bar burnout"></div>
+        <div class="drive-bar burnout"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="max-width:600px; margin: 0.3em auto; text-align:center;">
+    守りすぎればバーンアウトで不利。攻め続ければゲージ回復。<br>
+    <span class="accent">「攻めなければ勝てない」を構造的に保証</span>する設計。
+  </div>
+</section>
+
+<!-- Slide 5: Summary + 3 Principles + Pokemon Connection -->
+<section>
+  <h2>SF6の面白さまとめ &mdash; 3つの設計原則</h2>
+  <p style="text-align:center; font-size:0.6em; margin-bottom:0.2em;">
+    <span class="accent">読み合いの面白さを、技術的障壁なしに体験できる</span>
+  </p>
+
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="num">&numero;1</div>
+      <div class="label">モダン/クラシック</div>
+      <div class="desc">敷居と天井の分離<br><strong>参入障壁の除去</strong></div>
+    </div>
+    <div class="summary-item">
+      <div class="num">&numero;2</div>
+      <div class="label">ドライブシステム</div>
+      <div class="desc">攻守のジレンマ<br><strong>全キャラ共通設計</strong></div>
+    </div>
+    <div class="summary-item">
+      <div class="num">&numero;3</div>
+      <div class="label">HPゲージ表示</div>
+      <div class="desc">数値を隠し目測に委ねる<br><strong>経験で精度が上がる成長実感</strong></div>
+    </div>
+  </div>
+
+  <!-- Floor/Ceiling Concept Diagram -->
+  <div style="position:relative; max-width:500px; margin: 0.3em auto 0; height: 120px;">
+    <svg width="100%" height="100%" viewBox="0 0 500 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Axis -->
+      <line x1="50" y1="8" x2="50" y2="108" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <line x1="50" y1="108" x2="480" y2="108" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <!-- Labels -->
+      <text x="12" y="62" fill="#a0a0b8" font-size="8" font-family="Noto Sans JP" transform="rotate(-90 12 62)">スキルレベル</text>
+      <text x="265" y="118" fill="#a0a0b8" font-size="8" font-family="Noto Sans JP" text-anchor="middle">プレイヤー層</text>
+      <!-- Ceiling line -->
+      <line x1="50" y1="12" x2="480" y2="12" stroke="#e94560" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="483" y="15" fill="#e94560" font-size="7" font-family="Noto Sans JP">天井 (判断の深さ)</text>
+      <!-- Old floor -->
+      <line x1="65" y1="48" x2="240" y2="48" stroke="#888" stroke-width="2" stroke-dasharray="4,4"/>
+      <text x="152" y="44" fill="#888" font-size="7" font-family="Noto Sans JP" text-anchor="middle">旧作の敷居</text>
+      <!-- SF6 floor -->
+      <line x1="65" y1="88" x2="240" y2="88" stroke="#4DA3FF" stroke-width="2"/>
+      <text x="152" y="84" fill="#4DA3FF" font-size="7" font-family="Noto Sans JP" text-anchor="middle">SF6の敷居 (モダン)</text>
+      <!-- Zones -->
+      <rect x="255" y="16" width="85" height="30" rx="3" fill="rgba(136,136,136,0.1)" stroke="#888" stroke-dasharray="4,4"/>
+      <text x="297" y="35" fill="#888" font-size="6.5" font-family="Noto Sans JP" text-anchor="middle">旧作の参加可能層</text>
+      <rect x="255" y="52" width="210" height="45" rx="3" fill="rgba(77,163,255,0.1)" stroke="#4DA3FF" stroke-dasharray="4,4"/>
+      <text x="360" y="78" fill="#4DA3FF" font-size="6.5" font-family="Noto Sans JP" text-anchor="middle">SF6の参加可能層 (大幅拡大)</text>
+      <!-- Arrow showing expansion -->
+      <path d="M340 46 L340 52" stroke="#4DA3FF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+      <defs>
+        <marker id="arrowBlue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4DA3FF"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Pokemon connection note -->
+  <div class="pokemon-note">
+    この3原則はポケモン対戦にも通底する。タイプ相性が「攻守のジレンマ」、努力値/個体値が「敷居と天井の分離」、テラスタルが「構造的課題のシステム解消」。対戦ゲームに共通する設計原則を、ジャンルを超えて抽出したのが本レポートの目的である。
+  </div>
+</section>
+
+<!-- Slide 6: Proposal (merged 7+8) -->
+<section>
+  <h2>追加企画提案<br><span style="font-size:0.6em; color: var(--accent);">リアルタイムコーチングモード</span></h2>
+
+  <div class="proposal-concept">
+    SF6はモダン操作で「参入の壁」を壊した。<br>次に壊すべきは<span style="color:#fff;">「成長の壁」</span>。
+  </div>
+
+  <!-- Dropout flow -->
+  <div class="step-flow">
+    <div class="step-box problem">なぜ負けた<br>かわからない</div>
+    <div class="step-arrow">&rarr;</div>
+    <div class="step-box problem">何を改善すべき<br>かわからない</div>
+    <div class="step-arrow">&rarr;</div>
+    <div class="step-box problem">上手く<br>ならない</div>
+    <div class="step-arrow">&rarr;</div>
+    <div class="step-box" style="border-color:var(--accent); background:rgba(233,69,96,0.15);">
+      <span class="accent" style="font-weight:900;">離脱</span>
+    </div>
+  </div>
+
+  <div style="max-width:620px; margin:0.15em auto 0;">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>既存 (トレモ / ガイド)</th>
+          <th style="background:rgba(233,69,96,0.35);">提案: コーチングモード</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;">タイミング</td>
+          <td>対戦の外 (能動的に学びに行く)</td>
+          <td><span class="accent">対戦中</span> (受動的に学べる)</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">課題の特定</td>
+          <td>自分で判断 / 汎用情報</td>
+          <td><span class="accent">AIが個別に分析</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">成長実感</td>
+          <td>間接的</td>
+          <td><span class="accent">ヒント減少で直接実感</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box" style="max-width:600px; margin:0.2em auto 0; text-align:center; font-size:0.5em;">
+    ゲームの面白さを変えずに、<span class="accent">障壁だけを取り除く</span> &mdash; SF6のコンセプトと一貫した設計。コーチングは「正解を教える」のではなく「<span class="accent">気づきを促す</span>」。
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  center: true,
+  width: 960,
+  height: 700,
+  margin: 0.08,
+  pdfSeparateFragments: false,
+  pdfMaxPagesPerSlide: 1
+});
+</script>
+</body>
+</html>

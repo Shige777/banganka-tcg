@@ -1,0 +1,50 @@
+{
+  "id": "MAN_WEA_10",
+  "cardName": "岩丸",
+  "type": 0,
+  "cpCost": 4,
+  "aspect": 2,
+  "effectKey": "SUMMON_VANILLA",
+  "flavorText": "動かぬ番兵。その贖いの意志が、磐石の壁となる。",
+  "rarity": "R",
+  "wishTrigger": "-",
+  "emotionTag": "Atonement",
+  "battlePower": 6500,
+  "wishDamage": 3,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_wea_10",
+  "title": "磐石の番兵",
+  "visualDescription": "Iwamaru, stocky stone-faced guard with moss-covered tower shield"
+}

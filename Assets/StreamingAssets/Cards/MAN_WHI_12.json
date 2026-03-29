@@ -1,0 +1,50 @@
+{
+  "id": "MAN_WHI_12",
+  "cardName": "シェイクル",
+  "type": 0,
+  "cpCost": 3,
+  "aspect": 1,
+  "effectKey": "SUMMON_ON_PLAY_DRAW",
+  "flavorText": "風を束ねる者は、運命すら縛ることができる。",
+  "rarity": "R",
+  "wishTrigger": "-",
+  "emotionTag": "Resign",
+  "battlePower": 4200,
+  "wishDamage": 3,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 1,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_whi_12",
+  "title": "万風の縛り手",
+  "visualDescription": "Shackle, entity that binds with invisible wind chains"
+}

@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>万願果（ばんがんか）— オリジナルTCG企画書</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<style>
+:root {
+  --bg-deep: #0a0a1a;
+  --purple: #9A5BFF;
+  --red: #FF5A36;
+  --gold: #F4C542;
+  --blue: #4DA3FF;
+  --green: #59C36A;
+  --dark: #3A3A46;
+  --text: #e8e8f0;
+  --text-dim: #8888aa;
+  --card-bg: #14142a;
+}
+
+.reveal-viewport {
+  background: var(--bg-deep);
+}
+
+.reveal {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+}
+
+.reveal .slides section {
+  text-align: left;
+  padding: 15px 35px;
+  overflow: hidden;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.reveal h1 {
+  font-size: 1.8em;
+  background: linear-gradient(135deg, var(--purple), var(--red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reveal h2 {
+  font-size: 1.2em;
+  color: var(--gold);
+  margin-bottom: 0.4em;
+  text-shadow: 0 0 20px rgba(244,197,66,0.3);
+}
+
+.reveal h3 {
+  font-size: 0.8em;
+  color: var(--purple);
+}
+
+.reveal p, .reveal li {
+  font-size: 0.55em;
+  line-height: 1.5;
+}
+
+.reveal ul { list-style: none; padding-left: 0; }
+.reveal ul li::before {
+  content: ">";
+  color: var(--gold);
+  font-weight: 900;
+  margin-right: 0.5em;
+}
+
+.reveal blockquote {
+  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.15));
+  border-left: 4px solid var(--gold);
+  padding: 0.5em 0.8em;
+  font-style: normal;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(154,91,255,0.1);
+}
+
+.reveal blockquote p {
+  font-size: 0.75em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.gold { color: var(--gold) !important; }
+.purple { color: var(--purple) !important; }
+.red { color: var(--red) !important; }
+.blue { color: var(--blue) !important; }
+.green { color: var(--green) !important; }
+.dim { color: var(--text-dim) !important; }
+
+.accent-box {
+  background: linear-gradient(135deg, rgba(154,91,255,0.12), rgba(255,90,54,0.08));
+  border: 1px solid rgba(154,91,255,0.3);
+  border-radius: 8px;
+  padding: 0.5em 0.7em;
+  margin: 0.3em 0;
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(244,197,66,0.5), 0 0 30px rgba(244,197,66,0.2);
+}
+
+/* ===== Title Slide ===== */
+.title-slide {
+  text-align: center !important;
+}
+.title-slide h1 {
+  font-size: 2.2em;
+  margin-bottom: 0;
+}
+.title-reading {
+  font-size: 1.2em !important;
+  color: var(--text-dim);
+  letter-spacing: 0.3em;
+  margin-top: -0.2em;
+}
+.title-hook {
+  font-size: 1em !important;
+  color: var(--gold);
+  font-weight: 900;
+  margin-top: 0.4em;
+  text-shadow: 0 0 25px rgba(244,197,66,0.5), 0 0 50px rgba(244,197,66,0.25);
+  letter-spacing: 0.05em;
+}
+.title-summary {
+  font-size: 0.6em !important;
+  color: var(--text-dim);
+  margin-top: 0.4em;
+  line-height: 1.4;
+}
+.title-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--red));
+  color: #fff;
+  padding: 0.25em 1em;
+  border-radius: 20px;
+  font-size: 0.5em !important;
+  font-weight: 700;
+  margin-top: 0.4em;
+}
+.title-orb {
+  width: 80px; height: 80px;
+  margin: 0.3em auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold), var(--purple) 60%, var(--red) 100%);
+  box-shadow: 0 0 40px rgba(154,91,255,0.5), 0 0 80px rgba(255,90,54,0.3), inset 0 0 20px rgba(244,197,66,0.4);
+  animation: orbPulse 3s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(154,91,255,0.5), 0 0 80px rgba(255,90,54,0.3); }
+  50% { box-shadow: 0 0 60px rgba(154,91,255,0.7), 0 0 120px rgba(255,90,54,0.5); }
+}
+
+/* ===== Concept Cards ===== */
+.concept-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6em;
+  margin-top: 0.5em;
+}
+.concept-card {
+  background: linear-gradient(135deg, rgba(154,91,255,0.1), rgba(255,90,54,0.06));
+  border: 1px solid rgba(154,91,255,0.3);
+  border-radius: 10px;
+  padding: 0.5em;
+  text-align: center;
+}
+.concept-card-icon {
+  font-size: 1.5em;
+  margin-bottom: 0.15em;
+}
+.concept-card h3 {
+  font-size: 0.6em;
+  color: var(--gold);
+  margin: 0 0 0.2em;
+}
+.concept-card p {
+  font-size: 0.42em;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== Battle Mockup ===== */
+.battle-screen {
+  background: linear-gradient(180deg, #0d0d24 0%, #0a0a1a 50%, #0d0d24 100%);
+  border: 2px solid rgba(154,91,255,0.3);
+  border-radius: 10px;
+  padding: 0.2em 0.35em;
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(154,91,255,0.1);
+}
+
+.battle-leader {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  margin-bottom: 0.1em;
+}
+.battle-leader.opponent { background: rgba(255,90,54,0.1); }
+.battle-leader.self { background: rgba(77,163,255,0.1); margin-top: 0.15em; }
+
+.leader-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.4em; font-weight: 900; color: #fff;
+}
+
+.hp-bar-container {
+  flex: 1;
+}
+.hp-bar-label {
+  font-size: 0.35em;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+}
+.hp-bar {
+  height: 7px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.hp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+.hp-bar-fill.opponent { width: 62%; background: linear-gradient(90deg, var(--red), #ff8866); }
+.hp-bar-fill.self { width: 85%; background: linear-gradient(90deg, var(--blue), #66bbff); }
+
+.lv-badge {
+  font-size: 0.38em;
+  font-weight: 900;
+  padding: 0.1em 0.4em;
+  border-radius: 10px;
+  color: #fff;
+}
+.lv-badge.lv2 { background: var(--purple); }
+.lv-badge.lv1 { background: var(--blue); }
+
+.battle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin: 0.1em 0;
+}
+.grid-label {
+  grid-column: 1 / -1;
+  font-size: 0.3em;
+  color: var(--text-dim);
+  text-align: right;
+  padding-right: 4px;
+}
+.grid-slot {
+  aspect-ratio: 3/3;
+  border: 1px solid rgba(154,91,255,0.25);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.28em;
+  font-weight: 700;
+  background: rgba(154,91,255,0.05);
+}
+.grid-slot.filled {
+  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.1));
+  border-color: rgba(154,91,255,0.5);
+  color: var(--text);
+}
+.grid-slot.empty {
+  color: rgba(255,255,255,0.15);
+  border-style: dashed;
+}
+
+.algorithm-center {
+  display: flex;
+  justify-content: center;
+  margin: 0.15em 0;
+}
+.algorithm-card-battle {
+  background: linear-gradient(135deg, rgba(244,197,66,0.15), rgba(154,91,255,0.15));
+  border: 2px solid var(--gold);
+  border-radius: 5px;
+  padding: 0.15em 0.7em;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(244,197,66,0.3), 0 0 30px rgba(244,197,66,0.1);
+  animation: algGlow 2s ease-in-out infinite;
+}
+@keyframes algGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(244,197,66,0.3); }
+  50% { box-shadow: 0 0 25px rgba(244,197,66,0.5), 0 0 50px rgba(244,197,66,0.2); }
+}
+.algorithm-card-battle .alg-label {
+  font-size: 0.3em;
+  color: var(--gold);
+  font-weight: 900;
+}
+.algorithm-card-battle .alg-name {
+  font-size: 0.42em;
+  color: #fff;
+  font-weight: 900;
+}
+.algorithm-card-battle .alg-effect {
+  font-size: 0.28em;
+  color: var(--text-dim);
+}
+
+.battle-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  margin-top: 0.1em;
+}
+.cp-display {
+  font-size: 0.4em;
+  font-weight: 900;
+  color: var(--blue);
+}
+.hand-cards {
+  display: flex;
+  gap: 2px;
+}
+.hand-card {
+  width: 16px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--purple), var(--red));
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.hand-card.empty {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* Ganriki Gauge */
+.ganriki-gauge {
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+  margin-top: 0.15em;
+}
+.ganriki-gauge-label {
+  font-size: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+}
+.ganriki-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+  margin-top: 2px;
+}
+.ganriki-fill {
+  height: 100%;
+  width: 85%;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--purple), var(--red));
+  border-radius: 5px;
+}
+.ganriki-marker {
+  position: absolute;
+  top: -1px;
+  height: 12px;
+  width: 2px;
+  border-radius: 1px;
+}
+.ganriki-marker-label {
+  position: absolute;
+  top: -10px;
+  font-size: 6px;
+  color: var(--text-dim);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* ===== Card Mockups ===== */
+.cards-row {
+  display: flex;
+  gap: 0.7em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card-mockup {
+  width: 170px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: var(--card-bg);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+}
+.card-mockup .card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em 0.5em;
+  font-size: 0.48em;
+  font-weight: 900;
+}
+.card-cp {
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1em;
+  color: #fff;
+  border: 2px solid;
+}
+.card-aspect {
+  font-size: 0.78em;
+  font-weight: 700;
+}
+.card-art {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.card-art-symbol {
+  font-size: 2em;
+  opacity: 0.6;
+}
+.card-name-bar {
+  padding: 0.2em 0.5em;
+  font-size: 0.5em;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+}
+.card-stats {
+  padding: 0.2em 0.5em;
+  font-size: 0.42em;
+  display: flex;
+  justify-content: space-between;
+}
+.card-keyword {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.42em;
+  font-weight: 700;
+  margin: 0.1em 0.5em;
+}
+.card-effect {
+  padding: 0.2em 0.5em;
+  font-size: 0.38em;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.card-flavor {
+  padding: 0.15em 0.5em 0.3em;
+  font-size: 0.33em;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.card-type-label {
+  text-align: center;
+  font-size: 0.48em;
+  font-weight: 900;
+  margin-top: 0.3em;
+}
+
+/* Card borders by aspect */
+.card-red { border: 2px solid var(--red); }
+.card-red .card-top, .card-red .card-name-bar { background: linear-gradient(135deg, rgba(255,90,54,0.3), rgba(255,90,54,0.1)); }
+.card-red .card-art { background: linear-gradient(180deg, rgba(255,90,54,0.15), rgba(255,90,54,0.05)); }
+
+.card-green { border: 2px solid var(--green); }
+.card-green .card-top, .card-green .card-name-bar { background: linear-gradient(135deg, rgba(89,195,106,0.3), rgba(89,195,106,0.1)); }
+.card-green .card-art { background: linear-gradient(180deg, rgba(89,195,106,0.15), rgba(89,195,106,0.05)); }
+
+.card-gold { border: 2px solid var(--gold); }
+.card-gold .card-top, .card-gold .card-name-bar { background: linear-gradient(135deg, rgba(244,197,66,0.3), rgba(244,197,66,0.1)); }
+.card-gold .card-art { background: linear-gradient(180deg, rgba(244,197,66,0.15), rgba(244,197,66,0.05)); }
+
+/* ===== Leader Grid ===== */
+.leader-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4em;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.leader-card {
+  border-radius: 6px;
+  padding: 0.35em;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.leader-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.08;
+  border-radius: 6px;
+}
+.leader-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  margin: 0 auto 0.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 0 12px;
+}
+.leader-name {
+  font-size: 0.6em;
+  font-weight: 900;
+  color: #fff;
+}
+.leader-aspect {
+  font-size: 0.4em;
+  font-weight: 700;
+  margin-top: 0.05em;
+}
+.leader-wish {
+  font-size: 0.33em;
+  color: var(--text-dim);
+  margin-top: 0.1em;
+  line-height: 1.3;
+}
+.leader-archetype {
+  font-size: 0.33em;
+  font-weight: 700;
+  margin-top: 0.1em;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ===== Progression Diagram ===== */
+.progression {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0.4em 0;
+}
+.prog-level {
+  text-align: center;
+  padding: 0.3em 0.6em;
+  border-radius: 8px;
+  background: rgba(154,91,255,0.1);
+  border: 2px solid rgba(154,91,255,0.3);
+  min-width: 100px;
+}
+.prog-level.active {
+  background: linear-gradient(135deg, rgba(154,91,255,0.25), rgba(255,90,54,0.15));
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(244,197,66,0.2);
+}
+.prog-lv {
+  font-size: 1em;
+  font-weight: 900;
+}
+.prog-skill {
+  font-size: 0.4em;
+  color: var(--gold);
+  margin-top: 0.1em;
+}
+.prog-bonus {
+  font-size: 0.35em;
+  color: var(--text-dim);
+}
+.prog-arrow {
+  font-size: 0.5em;
+  color: var(--purple);
+  padding: 0 0.2em;
+  text-align: center;
+}
+.prog-arrow .pts {
+  font-size: 0.7em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ===== Flow Diagram ===== */
+.flow-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin: 0.4em 0;
+}
+.flow-step {
+  text-align: center;
+  padding: 0.3em 0.25em;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 0;
+  max-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flow-icon {
+  font-size: 1em;
+  margin-bottom: 0.1em;
+}
+.flow-label {
+  font-size: 0.38em;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.flow-desc {
+  font-size: 0.28em;
+  color: var(--text-dim);
+  margin-top: 0.05em;
+  line-height: 1.2;
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 0.7em;
+  color: var(--gold);
+  padding: 0 0.1em;
+  flex-shrink: 0;
+}
+
+.flow-step.danger { background: rgba(255,90,54,0.15); border: 1px solid rgba(255,90,54,0.4); }
+.flow-step.trigger { background: rgba(244,197,66,0.15); border: 1px solid rgba(244,197,66,0.4); }
+.flow-step.growth { background: rgba(154,91,255,0.15); border: 1px solid rgba(154,91,255,0.4); }
+.flow-step.climax { background: linear-gradient(135deg, rgba(154,91,255,0.2), rgba(255,90,54,0.2)); border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(244,197,66,0.2); }
+
+/* ===== Cost Curve Chart ===== */
+.cost-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4em;
+  justify-content: center;
+  height: 160px;
+  padding: 0 0.5em;
+}
+.cost-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+}
+.cost-bar {
+  width: 30px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--purple), rgba(154,91,255,0.4));
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.15em;
+  font-size: 0.4em;
+  font-weight: 900;
+  color: #fff;
+  position: relative;
+}
+.cost-label {
+  font-size: 0.42em;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+/* ===== Columns ===== */
+.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5em;
+}
+.col-box {
+  background: rgba(154,91,255,0.08);
+  border: 1px solid rgba(154,91,255,0.25);
+  border-radius: 6px;
+  padding: 0.4em;
+}
+.col-box h3 {
+  font-size: 0.55em;
+  margin-bottom: 0.2em;
+  text-align: center;
+}
+.col-box p, .col-box li {
+  font-size: 0.4em;
+}
+.col-box .col-example {
+  background: rgba(244,197,66,0.1);
+  border-left: 3px solid var(--gold);
+  padding: 0.2em 0.4em;
+  margin-top: 0.2em;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.38em;
+  color: var(--gold);
+}
+
+/* ===== Table Styling ===== */
+.reveal table {
+  font-size: 0.45em;
+  border-collapse: collapse;
+  width: 100%;
+}
+.reveal table th {
+  background: linear-gradient(135deg, rgba(154,91,255,0.2), rgba(255,90,54,0.1));
+  color: var(--gold);
+  font-weight: 900;
+  padding: 0.3em 0.4em;
+  border-bottom: 2px solid var(--gold);
+  text-align: left;
+}
+.reveal table td {
+  padding: 0.25em 0.4em;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.reveal table tr:hover td {
+  background: rgba(154,91,255,0.05);
+}
+
+/* ===== Algorithm Showcase ===== */
+.alg-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7em;
+  align-items: start;
+}
+.alg-card-large {
+  background: var(--card-bg);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 0.6em;
+  box-shadow: 0 0 25px rgba(244,197,66,0.2);
+}
+.alg-card-large .alg-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.48em;
+  margin-bottom: 0.2em;
+}
+.alg-card-large .alg-title {
+  font-size: 0.7em;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  margin: 0.2em 0;
+}
+.alg-rule-box {
+  border-radius: 5px;
+  padding: 0.3em 0.5em;
+  margin: 0.2em 0;
+  font-size: 0.45em;
+}
+.alg-shared {
+  background: rgba(154,91,255,0.15);
+  border: 1px solid rgba(154,91,255,0.4);
+}
+.alg-bonus {
+  background: rgba(244,197,66,0.15);
+  border: 1px solid rgba(244,197,66,0.4);
+}
+.alg-points {
+  font-size: 0.48em;
+  line-height: 1.6;
+}
+.alg-points li::before {
+  content: ">" !important;
+  color: var(--gold) !important;
+}
+
+/* ===== Tech Stack ===== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4em;
+}
+.tech-box {
+  background: rgba(154,91,255,0.08);
+  border: 1px solid rgba(154,91,255,0.2);
+  border-radius: 6px;
+  padding: 0.35em 0.5em;
+}
+.tech-box h3 {
+  font-size: 0.5em;
+  margin-bottom: 0.15em;
+}
+.tech-box p {
+  font-size: 0.4em;
+  margin: 0.05em 0;
+}
+
+.stat-number {
+  font-size: 1.2em;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Diff Table ===== */
+.diff-table {
+  font-size: 0.42em !important;
+}
+.diff-table th { font-size: 0.8em; }
+
+/* ===== Slide number ===== */
+.reveal .slide-number {
+  color: var(--text-dim);
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== Presentation Effects ===== */
+.section-number {
+  display: inline-block;
+  width: 28px; height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--red));
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.55em;
+  margin-right: 0.25em;
+  vertical-align: middle;
+}
+
+/* Two-column layout */
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7em;
+  align-items: start;
+}
+
+/* Production design slide */
+.production-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.3em;
+}
+.production-item {
+  background: rgba(154,91,255,0.08);
+  border-left: 3px solid var(--purple);
+  padding: 0.25em 0.4em;
+  border-radius: 0 5px 5px 0;
+}
+.production-item h4 {
+  font-size: 0.42em;
+  color: var(--gold);
+  font-weight: 900;
+  margin: 0 0 0.1em;
+}
+.production-item p {
+  font-size: 0.33em;
+  margin: 0;
+  color: var(--text-dim);
+  line-height: 1.3;
+}
+
+/* Summary slide */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.3em;
+}
+.summary-item {
+  background: linear-gradient(135deg, rgba(154,91,255,0.1), rgba(255,90,54,0.05));
+  border: 1px solid rgba(154,91,255,0.3);
+  border-radius: 6px;
+  padding: 0.3em 0.45em;
+}
+.summary-item h4 {
+  font-size: 0.4em;
+  color: var(--gold);
+  margin: 0 0 0.1em;
+  font-weight: 900;
+}
+.summary-item p {
+  font-size: 0.33em;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ===== Stat Badge Row ===== */
+.stat-badge-row {
+  display: flex;
+  gap: 0.3em;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.3em;
+}
+.stat-badge {
+  background: rgba(154,91,255,0.1);
+  border: 1px solid rgba(154,91,255,0.3);
+  border-radius: 16px;
+  padding: 0.15em 0.5em;
+  text-align: center;
+}
+.stat-badge .stat-num {
+  font-size: 0.6em;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-badge .stat-label {
+  font-size: 0.28em;
+  color: var(--text-dim);
+}
+
+/* Pokemon reference callout */
+.pokemon-ref {
+  background: linear-gradient(135deg, rgba(244,197,66,0.12), rgba(255,90,54,0.08));
+  border: 2px solid rgba(244,197,66,0.4);
+  border-radius: 6px;
+  padding: 0.35em 0.5em;
+  margin-top: 0.3em;
+  box-shadow: 0 0 15px rgba(244,197,66,0.15);
+}
+.pokemon-ref p {
+  font-size: 0.45em;
+  margin: 0;
+  color: var(--gold);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Final CTA */
+.final-cta {
+  text-align: center;
+  margin-top: 0.3em;
+  padding: 0.35em 0.5em;
+  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.1));
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(244,197,66,0.2);
+}
+.final-cta p {
+  margin: 0.1em 0;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: Title ==================== -->
+<section class="title-slide">
+  <div class="title-orb"></div>
+  <h1>万願果</h1>
+  <p class="title-reading">ばんがんか</p>
+  <p class="title-hook">「追い詰められるほど、願いは強くなる」</p>
+  <p class="title-summary">HPが減るほど願主が覚醒する逆転TCG — 企画・設計・実装: 内山 茂樹</p>
+  <p class="title-badge">Nintendo Switch / PS5 / PC (Steam) / iOS / Android</p>
+</section>
+
+<!-- ==================== SLIDE 2: Concept ==================== -->
+<section>
+  <h2><span class="section-number">1</span>コンセプト</h2>
+  <blockquote>
+    <p>追い詰められた願主が覚醒し、試合をひっくり返す逆転TCG</p>
+  </blockquote>
+  <div class="concept-cards">
+    <div class="concept-card">
+      <div class="concept-card-icon">&#9889;</div>
+      <h3>逆転のドラマ</h3>
+      <p>HPが削られるほど願主が成長し、リーダースキルが解放される</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-card-icon">&#127919;</div>
+      <h3>読み合いの快感</h3>
+      <p>界律の上書き、願主スキルのタイミング、CPのリソース判断</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-card-icon">&#128214;</div>
+      <h3>願いの物語</h3>
+      <p>6人の願主の願いがメカニクスに直結。キャラへの愛着がデッキ選択の動機に</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: Target + Differentiation ==================== -->
+<section>
+  <h2><span class="section-number">2</span>ターゲットと差別化</h2>
+  <div class="two-cols">
+    <div>
+      <h3 style="font-size:0.6em; color:var(--gold);">誰に、何を届けるか</h3>
+      <table style="margin-top:0.2em;">
+        <tr><th style="width:35%">要素</th><th>内容</th></tr>
+        <tr><td>プレイヤー</td><td>TCG経験者 + 対戦ゲームに興味があるライト層 (15~35歳)</td></tr>
+        <tr><td>市場</td><td>既存TCGの環境固定化やインフレに疲れたプレイヤー</td></tr>
+        <tr><td>変化</td><td>「健全に回り続ける対戦環境」と「キャラの願いに感情移入して戦う体験」</td></tr>
+      </table>
+      <div style="font-size:0.38em; margin-top:0.3em;">
+        <div style="padding:0.2em 0.4em; background:rgba(89,195,106,0.15); border-radius:4px; margin:0.15em 0;">
+          <span class="green" style="font-weight:900;">初回</span> チュートリアル（HP30短縮戦）→ AI対戦
+        </div>
+        <div style="padding:0.2em 0.4em; background:rgba(77,163,255,0.15); border-radius:4px; margin:0.15em 0;">
+          <span class="blue" style="font-weight:900;">定着</span> ランクマッチ → パック開封 → デッキ構築
+        </div>
+        <div style="padding:0.2em 0.4em; background:rgba(154,91,255,0.15); border-radius:4px; margin:0.15em 0;">
+          <span class="purple" style="font-weight:900;">深化</span> 界律・情相の段階アンロック → ドラフト
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:0.6em; color:var(--gold);">既存TCGとの差別化</h3>
+      <table class="diff-table" style="margin-top:0.2em;">
+        <tr><th>要素</th><th>万願果</th><th>違い</th></tr>
+        <tr><td><span class="gold">勝利条件</span></td><td>HP削り + 鯱鉾</td><td>攻め動機 + 逆転可能の両立</td></tr>
+        <tr><td><span class="gold">フィールド</span></td><td>界律(共有1枠)</td><td>非対称な共有ルール</td></tr>
+        <tr><td><span class="gold">リーダー</span></td><td>願主(試合中成長)</td><td>ストーリー直結の成長</td></tr>
+        <tr><td><span class="gold">HP表示</span></td><td>ゲージ表示</td><td>経験と読みが介在</td></tr>
+        <tr><td><span class="gold">逆転構造</span></td><td>%制ダメージ</td><td>HP残量で非線形</td></tr>
+      </table>
+      <div style="margin-top:0.2em; padding:0.2em 0.4em; background:rgba(244,197,66,0.08); border-left:3px solid var(--gold); border-radius:0 4px 4px 0;">
+        <p style="font-size:0.38em; margin:0;"><span class="gold" style="font-weight:900;">デュエマ</span> = ランダムな運の逆転 → <span class="gold" style="font-weight:900;">万願果</span> = 判断で掴む逆転</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: Battle Screen ==================== -->
+<section>
+  <h2><span class="section-number">3</span>バトル画面</h2>
+  <p style="font-size:0.42em; margin-bottom:0.2em;" class="dim">DQライバルズ型グリッドUI — 界律カードを盤面中央に配置</p>
+
+  <div class="battle-screen">
+    <!-- Opponent Leader -->
+    <div class="battle-leader opponent">
+      <div class="leader-icon" style="background:linear-gradient(135deg, var(--red), #cc3311);">A</div>
+      <span class="lv-badge lv2">Lv2</span>
+      <div class="hp-bar-container">
+        <div class="hp-bar-label"><span>相手の願主 Aldric</span><span>HP: 62%</span></div>
+        <div class="hp-bar"><div class="hp-bar-fill opponent"></div></div>
+      </div>
+    </div>
+
+    <!-- Opponent Field (merged) -->
+    <div style="font-size:1em;">
+      <div class="grid-label">相手フィールド</div>
+      <div class="battle-grid">
+        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">5000</span></div>
+        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">7000</span></div>
+        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">4000</span></div>
+      </div>
+    </div>
+
+    <!-- Algorithm Card Center -->
+    <div class="algorithm-center">
+      <div class="algorithm-card-battle">
+        <div class="alg-label">界律 ALGORITHM</div>
+        <div class="alg-name">《突撃陣》</div>
+        <div class="alg-effect">CP2以下の顕現にRush付与 | 設置者: 願力+1%</div>
+      </div>
+    </div>
+
+    <!-- Self Field (merged) -->
+    <div style="font-size:1em;">
+      <div class="grid-label">自分フィールド</div>
+      <div class="battle-grid">
+        <div class="grid-slot filled">顕現<br><span style="color:var(--blue);">8000</span></div>
+        <div class="grid-slot filled">顕現<br><span style="color:var(--blue);">5000</span></div>
+        <div class="grid-slot empty">--</div>
+      </div>
+    </div>
+
+    <!-- Self Leader -->
+    <div class="battle-leader self">
+      <div class="leader-icon" style="background:linear-gradient(135deg, var(--blue), #2277dd);">V</div>
+      <span class="lv-badge lv1">Lv1</span>
+      <div class="hp-bar-container">
+        <div class="hp-bar-label"><span>自分の願主 Vael</span><span>HP: 85%</span></div>
+        <div class="hp-bar"><div class="hp-bar-fill self"></div></div>
+      </div>
+    </div>
+
+    <!-- Bottom: CP + Hand -->
+    <div class="battle-bottom">
+      <div class="cp-display">CP: 4/5</div>
+      <div class="hand-cards">
+        <div class="hand-card"></div>
+        <div class="hand-card"></div>
+        <div class="hand-card"></div>
+        <div class="hand-card"></div>
+        <div class="hand-card empty"></div>
+      </div>
+    </div>
+
+    <!-- Ganriki Gauge -->
+    <div class="ganriki-gauge">
+      <div class="ganriki-gauge-label">願力ゲージ</div>
+      <div class="ganriki-bar">
+        <div class="ganriki-fill"></div>
+        <div class="ganriki-marker" style="left:85%; background:var(--green);">
+          <div class="ganriki-marker-label">85%</div>
+        </div>
+        <div class="ganriki-marker" style="left:70%; background:var(--blue);">
+          <div class="ganriki-marker-label">70%</div>
+        </div>
+        <div class="ganriki-marker" style="left:55%; background:var(--purple);">
+          <div class="ganriki-marker-label">55%</div>
+        </div>
+        <div class="ganriki-marker" style="left:40%; background:var(--gold);">
+          <div class="ganriki-marker-label">40%</div>
+        </div>
+        <div class="ganriki-marker" style="left:25%; background:var(--red);">
+          <div class="ganriki-marker-label">25%</div>
+        </div>
+        <div class="ganriki-marker" style="left:10%; background:#ff2222;">
+          <div class="ganriki-marker-label">10%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: Card Types ==================== -->
+<section>
+  <h2><span class="section-number">4</span>カードタイプ</h2>
+  <div class="cards-row">
+    <!-- Manifestation Card -->
+    <div>
+      <div class="card-mockup card-red">
+        <div class="card-top">
+          <div class="card-cp" style="border-color:var(--red);">3</div>
+          <span class="card-aspect" style="color:var(--red);">曙 Contest</span>
+        </div>
+        <div class="card-art">
+          <div class="card-art-symbol" style="color:var(--red);">&#9876;</div>
+        </div>
+        <div class="card-name-bar">《焔の騎士アルヴァ》</div>
+        <div class="card-stats">
+          <span style="color:var(--gold);">戦力: 5000</span>
+          <span style="color:var(--red);">願力: 5%</span>
+        </div>
+        <div class="card-keyword" style="background:rgba(255,90,54,0.2); color:var(--red);">Rush</div>
+        <div class="card-flavor">「誓いの焔は、絶えず己を焦がし続ける。」</div>
+      </div>
+      <div class="card-type-label" style="color:var(--red);">顕現 Manifestation</div>
+    </div>
+
+    <!-- Incantation Card -->
+    <div>
+      <div class="card-mockup card-green">
+        <div class="card-top">
+          <div class="card-cp" style="border-color:var(--green);">2</div>
+          <span class="card-aspect" style="color:var(--green);">穏 Weave</span>
+        </div>
+        <div class="card-art">
+          <div class="card-art-symbol" style="color:var(--green);">&#10047;</div>
+        </div>
+        <div class="card-name-bar">《大地の縫合》</div>
+        <div class="card-effect">味方1体の戦力+2000</div>
+        <div class="card-flavor">「壊れた世界の境を繕い、守りを固める。」</div>
+      </div>
+      <div class="card-type-label" style="color:var(--green);">詠術 Incantation</div>
+    </div>
+
+    <!-- Algorithm Card -->
+    <div>
+      <div class="card-mockup card-gold">
+        <div class="card-top">
+          <div class="card-cp" style="border-color:var(--gold);">3</div>
+          <span class="card-aspect" style="color:var(--gold);">界律 Algorithm</span>
+        </div>
+        <div class="card-art">
+          <div class="card-art-symbol" style="color:var(--gold);">&#9672;</div>
+        </div>
+        <div class="card-name-bar">《突撃陣》</div>
+        <div class="card-effect" style="color:var(--purple);">
+          <div style="margin-bottom:0.15em;">【共有ルール】CP2以下の顕現にRush付与</div>
+          <div style="color:var(--gold);">【設置者ボーナス】CP2以下の願力+1%</div>
+        </div>
+        <div class="card-flavor">「誓いは速さに変わり、境界を駆け抜ける。」</div>
+      </div>
+      <div class="card-type-label" style="color:var(--gold);">界律 Algorithm</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: Algorithm Mechanic ==================== -->
+<section>
+  <h2><span class="section-number">5</span>界律 — 最大の独自メカニクス</h2>
+  <div class="alg-showcase">
+    <div class="alg-card-large">
+      <div class="alg-header">
+        <span style="color:var(--gold); font-weight:900;">CP: 3</span>
+        <span style="color:var(--red);">曙 Contest</span>
+      </div>
+      <div class="alg-title">《突撃陣》</div>
+      <div class="alg-rule-box alg-shared">
+        <span style="color:var(--purple); font-weight:700;">【共有ルール】</span><br>
+        CP2以下の顕現にRush付与<br>
+        <span class="dim" style="font-size:0.85em;">※ 両プレイヤーに適用される</span>
+      </div>
+      <div class="alg-rule-box alg-bonus">
+        <span style="color:var(--gold); font-weight:700;">【設置者ボーナス】</span><br>
+        CP2以下の顕現の願力ダメージ+1%<br>
+        <span class="dim" style="font-size:0.85em;">※ 設置したプレイヤーのみ</span>
+      </div>
+      <div style="text-align:center; margin-top:0.2em; font-size:0.35em; color:rgba(255,255,255,0.3); font-style:italic;">
+        「誓いは速さに変わり、境界を駆け抜ける。」
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--gold); font-size:0.6em;">駆け引きの構造</h3>
+      <ul class="alg-points">
+        <li>盤面に<span class="gold" style="font-weight:900;">1枚だけ</span>存在できる共有ルール</li>
+        <li>後から出した界律が<span class="gold" style="font-weight:900;">前の界律を上書き</span></li>
+        <li>共有ルールは<span class="purple" style="font-weight:700;">両者に適用</span>される</li>
+        <li>設置者ボーナスは<span class="gold" style="font-weight:900;">設置者だけ</span>に適用</li>
+        <li><span class="red" style="font-weight:700;">裏向きセット</span>可能 → 次ターンにオープン</li>
+        <li>1枠しかないため<span class="gold" style="font-weight:900;">いつ上書きするか</span>が戦略の鍵</li>
+      </ul>
+      <div class="pokemon-ref">
+        <p>&#9733; ポケモンカードのスタジアムから着想。「1枠」「設置者ボーナス」の2制約を加えることで、上書きタイミングの駆け引きと非対称性を実現した。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: Leaders ==================== -->
+<section>
+  <h2><span class="section-number">6</span>願主と世界観</h2>
+  <p style="font-size:0.42em; margin-bottom:0.2em;" class="dim">「交界」に集う6人の願主。各自の「願い」がゲームメカニクスに直結する。</p>
+  <div class="leader-grid">
+    <!-- Aldric -->
+    <div class="leader-card" style="background:rgba(255,90,54,0.1); border:1px solid rgba(255,90,54,0.3);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--red),#cc3311); box-shadow:0 0 12px rgba(255,90,54,0.5);">A</div>
+      <div class="leader-name">Aldric</div>
+      <div class="leader-aspect" style="color:var(--red);">曙 Contest</div>
+      <div class="leader-wish">滅ぼした民を蘇らせたい<br>(贖罪)</div>
+      <div class="leader-archetype" style="background:rgba(255,90,54,0.2); color:var(--red);">速攻・波状攻撃</div>
+    </div>
+    <!-- Vael -->
+    <div class="leader-card" style="background:rgba(77,163,255,0.1); border:1px solid rgba(77,163,255,0.3);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--blue),#2266cc); box-shadow:0 0 12px rgba(77,163,255,0.5);">V</div>
+      <div class="leader-name">Vael</div>
+      <div class="leader-aspect" style="color:var(--blue);">空 Whisper</div>
+      <div class="leader-wish">自分がここにいた証を残したい<br>(存在証明)</div>
+      <div class="leader-archetype" style="background:rgba(77,163,255,0.2); color:var(--blue);">妨害・制圧</div>
+    </div>
+    <!-- Tonagi -->
+    <div class="leader-card" style="background:rgba(89,195,106,0.1); border:1px solid rgba(89,195,106,0.3);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--green),#339944); box-shadow:0 0 12px rgba(89,195,106,0.5);">灯</div>
+      <div class="leader-name">灯凪</div>
+      <div class="leader-aspect" style="color:var(--green);">穏 Weave</div>
+      <div class="leader-wish">自分の物語を誰かに届けたい<br>(盲目の語り部)</div>
+      <div class="leader-archetype" style="background:rgba(89,195,106,0.2); color:var(--green);">堅実・全体バフ</div>
+    </div>
+    <!-- Amara -->
+    <div class="leader-card" style="background:rgba(154,91,255,0.1); border:1px solid rgba(154,91,255,0.3);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--purple),#6633cc); box-shadow:0 0 12px rgba(154,91,255,0.5);">Am</div>
+      <div class="leader-name">Amara</div>
+      <div class="leader-aspect" style="color:var(--purple);">妖 Verse</div>
+      <div class="leader-wish">自分が作った世界を消したい<br>(破壊と解放)</div>
+      <div class="leader-archetype" style="background:rgba(154,91,255,0.2); color:var(--purple);">自壊・墓地爆発</div>
+    </div>
+    <!-- Rahim -->
+    <div class="leader-card" style="background:rgba(244,197,66,0.1); border:1px solid rgba(244,197,66,0.3);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--gold),#cc9922); box-shadow:0 0 12px rgba(244,197,66,0.5);">R</div>
+      <div class="leader-name">Rahim</div>
+      <div class="leader-aspect" style="color:var(--gold);">遊 Manifest</div>
+      <div class="leader-wish">亡くした姉を蘇らせたい<br>(喪失と成長)</div>
+      <div class="leader-archetype" style="background:rgba(244,197,66,0.2); color:var(--gold);">再演・リソース循環</div>
+    </div>
+    <!-- Suihou -->
+    <div class="leader-card" style="background:rgba(58,58,70,0.3); border:1px solid rgba(58,58,70,0.6);">
+      <div class="leader-avatar" style="background:linear-gradient(135deg,#555566,var(--dark)); box-shadow:0 0 12px rgba(58,58,70,0.5); border:1px solid #666;">崔</div>
+      <div class="leader-name">崔鋒</div>
+      <div class="leader-aspect" style="color:#8888aa;">玄 Hush</div>
+      <div class="leader-wish">敗者の歴史を記録に残したい<br>(記録)</div>
+      <div class="leader-archetype" style="background:rgba(58,58,70,0.4); color:#aaa;">耐久・殉陣</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 8: Leader Growth + Reversal Drama ==================== -->
+<section>
+  <h2><span class="section-number">7</span>願主成長と逆転のドラマ</h2>
+
+  <div class="progression">
+    <div class="prog-level">
+      <div class="prog-lv" style="color:var(--blue);">Lv 1</div>
+      <div class="prog-skill">基本能力</div>
+      <div class="prog-bonus">初期状態</div>
+    </div>
+    <div class="prog-arrow">
+      <div class="pts">3pt</div>
+      <div>&#10145;</div>
+    </div>
+    <div class="prog-level active">
+      <div class="prog-lv" style="color:var(--purple);">Lv 2</div>
+      <div class="prog-skill">スキル1 解放</div>
+      <div class="prog-bonus">戦力 +1000</div>
+    </div>
+    <div class="prog-arrow">
+      <div class="pts">4pt</div>
+      <div>&#10145;</div>
+    </div>
+    <div class="prog-level active" style="border-color:var(--red); box-shadow:0 0 15px rgba(255,90,54,0.3);">
+      <div class="prog-lv" style="color:var(--red);">Lv 3</div>
+      <div class="prog-skill" style="color:var(--red);">スキル2 解放</div>
+      <div class="prog-bonus">戦力 +1000</div>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <div class="flow-step danger">
+      <div class="flow-icon">&#9888;</div>
+      <div class="flow-label red">HP減少</div>
+      <div class="flow-desc">相手の攻撃で<br>HPが削られる</div>
+    </div>
+    <div class="flow-arrow">&#10145;</div>
+    <div class="flow-step trigger">
+      <div class="flow-icon">&#9733;</div>
+      <div class="flow-label gold">閾値到達</div>
+      <div class="flow-desc">HPがゲージの<br>閾値マーカーを下回る</div>
+    </div>
+    <div class="flow-arrow">&#10145;</div>
+    <div class="flow-step trigger">
+      <div class="flow-icon">&#9830;</div>
+      <div class="flow-label gold">願力カード発動</div>
+      <div class="flow-desc">伏せカードが<br>めくれて効果発動</div>
+    </div>
+    <div class="flow-arrow">&#10145;</div>
+    <div class="flow-step growth">
+      <div class="flow-icon">&#9650;</div>
+      <div class="flow-label purple">願成ゲージ上昇</div>
+      <div class="flow-desc">同時に願成+1<br>レベルアップに近づく</div>
+    </div>
+    <div class="flow-arrow">&#10145;</div>
+    <div class="flow-step climax">
+      <div class="flow-icon">&#9889;</div>
+      <div class="flow-label" style="color:var(--gold);">願主覚醒</div>
+      <div class="flow-desc">リーダースキル解放<br>逆転の一手を掴む</div>
+    </div>
+  </div>
+
+  <div class="two-cols" style="margin-top:0.2em;">
+    <div class="accent-box" style="padding:0.35em 0.5em;">
+      <h3 style="font-size:0.48em; color:var(--gold); margin:0 0 0.15em;">成長手段 (2種)</h3>
+      <p style="font-size:0.38em; margin:0;"><span class="gold" style="font-weight:900;">願成チャージ</span> — CP1消費で願成+1。何回でも可能。CPをカードに使うか成長に使うかの判断。</p>
+      <p style="font-size:0.38em; margin:0.15em 0 0;"><span class="red" style="font-weight:900;">閾値踏み</span> — HPが閾値を下回ると願成+1。追い詰められるほど成長 = コンセプトの核。</p>
+    </div>
+    <div class="accent-box" style="padding:0.35em 0.5em;">
+      <h3 style="font-size:0.48em; color:var(--red); margin:0 0 0.15em;">攻める側のジレンマ</h3>
+      <p style="font-size:0.38em; margin:0;">追い詰めるほど相手の願主が成長。攻めないと勝てないが、攻めると覚醒される。</p>
+      <p style="font-size:0.38em; margin:0.15em 0 0;"><span class="gold" style="font-weight:700;">鯱鉾勝利</span>(追撃で即勝) + <span class="gold" style="font-weight:700;">塗り勝利</span>(24T後HP比較) → 攻撃の必要性とリスクが両立。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: Balance Design ==================== -->
+<section>
+  <h2><span class="section-number">8</span>バランス設計</h2>
+  <div class="two-cols">
+    <div>
+      <h3 style="color:var(--gold); font-size:0.6em;">コストカーブ: バニラ戦力 = CP x 2000 + 1000</h3>
+      <div class="cost-chart">
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:24px;">3K</div>
+          <div class="cost-label">CP1</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:40px;">5K</div>
+          <div class="cost-label">CP2</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:56px;">7K</div>
+          <div class="cost-label">CP3</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:72px;">9K</div>
+          <div class="cost-label">CP4</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:88px;">11K</div>
+          <div class="cost-label">CP5</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:120px;">15K</div>
+          <div class="cost-label">CP7</div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar" style="height:150px; background:linear-gradient(180deg, var(--gold), rgba(244,197,66,0.4));">21K</div>
+          <div class="cost-label">CP10</div>
+        </div>
+      </div>
+      <p style="font-size:0.36em; text-align:center; margin-top:0.2em;" class="dim">キーワード/効果は基準からペナルティを引いて戦力を決定</p>
+    </div>
+    <div>
+      <h3 style="color:var(--gold); font-size:0.6em;">キーワードペナルティ</h3>
+      <table style="margin-top:0.2em;">
+        <tr><th>キーワード</th><th>ペナルティ</th></tr>
+        <tr><td>Rush</td><td>-500</td></tr>
+        <tr><td>Blocker</td><td>-500</td></tr>
+        <tr><td>GuardBreak</td><td>-500</td></tr>
+        <tr><td>登場時ドロー</td><td>-1000</td></tr>
+        <tr><td>登場時除去</td><td>-1500</td></tr>
+      </table>
+
+      <div class="accent-box" style="margin-top:0.4em; padding:0.35em 0.5em;">
+        <h3 style="font-size:0.5em; color:var(--gold);">先攻/後攻バランス</h3>
+        <p style="font-size:0.42em;">
+          目標: 先攻勝率 <span class="gold" style="font-weight:900;">45~55%</span><br>
+          補正: 後攻は初期手札<span class="gold" style="font-weight:900;">+1枚</span>（先攻5枚 / 後攻6枚）<br>
+          検証: <span class="gold" style="font-weight:900;">108,000戦</span>の自動バランスシミュレーション
+        </p>
+      </div>
+
+      <div class="accent-box" style="margin-top:0.2em; padding:0.35em 0.5em;">
+        <p style="font-size:0.42em; margin:0;"><span class="gold" style="font-weight:700;">レアリティ ≠ 強さ</span><br>
+        Commonでも構築の核になる。SSRは「強い」ではなく「効果がユニーク」。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 10: Production + Implementation + Principles + Summary ==================== -->
+<section>
+  <h2><span class="section-number">9</span>演出・実装・設計の振り返り</h2>
+
+  <div class="two-cols">
+    <div>
+      <div class="production-grid" style="grid-template-columns:1fr;">
+        <div class="production-item" style="border-color:var(--purple);">
+          <h4>界律カード — 盤面中央に大きく表示</h4>
+          <p>今のルールが一目でわかり「上書きすべきか」の判断が画面から直接読み取れる</p>
+        </div>
+        <div class="production-item" style="border-color:var(--red);">
+          <h4>願主の進化演出</h4>
+          <p>レベルアップ時にカットイン+専用SE。戦略的転換点を盛り上げる</p>
+        </div>
+        <div class="production-item" style="border-color:var(--gold);">
+          <h4>奇襲（Ambush）演出</h4>
+          <p>相手ターン中に画面が揺れ伏せカードがめくれる。「待ってました!」の快感</p>
+        </div>
+        <div class="production-item" style="border-color:var(--green);">
+          <h4>願力ゲージの緊張演出</h4>
+          <p>HPが閾値に近づくとゲージが赤く点滅。逆転の緊張と期待が同時に生まれる</p>
+        </div>
+      </div>
+      <div class="stat-badge-row">
+        <div class="stat-badge">
+          <div class="stat-num">36,000</div>
+          <div class="stat-label">行 C#</div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-num">5,500</div>
+          <div class="stat-label">行 TypeScript</div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-num">162</div>
+          <div class="stat-label">種カード</div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">設計書</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="summary-grid" style="grid-template-columns:1fr;">
+        <div class="summary-item">
+          <h4>攻守のジレンマは構造で保証する</h4>
+          <p>デュエマのシールドトリガーから「攻めた側にリスクがある」構造を学び、願力カード閾値+鯱鉾/塗り勝利の2層で「攻めないと勝てない × 攻めるとリスク」を構造的に保証。</p>
+        </div>
+        <div class="summary-item">
+          <h4>構造的課題はシステムで解消する</h4>
+          <p>界律の「共有1枠・上書き式」が環境を自然に循環させる。個別カードのナーフに頼らない設計。CP制（自動累積+フル回復）で終盤の手札枯れを構造的に回避。</p>
+        </div>
+        <div class="summary-item">
+          <h4>敷居と天井は独立に設計できる</h4>
+          <p>プリセットデッキ+HP30短縮戦で敷居を下げ、界律・情相・ドラフトで戦略の天井を維持。SF6のモダン操作と同じ設計思想。</p>
+        </div>
+        <div class="summary-item">
+          <h4>試して戻した判断</h4>
+          <p>前列/後列をシャドバ型に変更して比較。界律の存在感を最大化するためグリッド型に戻した。<span style="color:var(--gold);">「試さずに悩む」より「試して比較する」。</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="final-cta">
+    <p style="font-size:0.55em; color:var(--gold); font-weight:900; margin:0;">万願果は企画書ではなく、遊べるゲームです。</p>
+    <p style="font-size:0.4em; color:var(--text); margin:0.15em 0 0;">36,000行のC#、162種のカード、108,000戦のバランスシミュレーション</p>
+    <p style="font-size:0.35em; color:var(--text-dim); margin:0.1em 0 0;">GitHub: github.com/uchiyamashigeki/banganka</p>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  width: 960,
+  height: 700,
+  margin: 0.04,
+  transition: 'fade',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  center: true,
+});
+</script>
+</body>
+</html>

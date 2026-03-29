@@ -1,0 +1,116 @@
+================================================================================
+CROSS-REFERENCE VALIDATOR - SCRIPT SUMMARY
+================================================================================
+
+SCRIPT CREATED: /sessions/great-sharp-dijkstra/mnt/AI_HANDOFF/Banngannka_Rebuild_Pack/tools/validate_crossrefs.py
+
+SCRIPT CAPABILITIES:
+- Scans all 54 markdown files in the parent directory
+- Extracts cross-references with patterns: FILENAME.md, FILENAME.md §N, FILENAME.md §N.N
+- Validates all file references exist
+- Validates section numbers match markdown headers (## N. and ### N.N patterns)
+- Identifies orphan files (never referenced by any other file)
+- Detects references to deleted/missing files
+- Generates comprehensive health report with score
+
+VALIDATION RESULTS (Latest Run):
+================================================================================
+
+HEALTH METRICS:
+  Overall Health Score: 93.8% (GOOD - Minor issues present)
+  
+STATISTICS:
+  Total files scanned: 54
+  Total cross-references found: 748
+  Broken file references: 14
+  Broken section references: 28
+  Orphan files: 4
+
+ISSUES IDENTIFIED:
+
+1. MISSING FILES (6 deleted files with active references):
+   - ASSET_AUDIO.md (3 references)
+   - ASSET_CARD_EFFECTS.md (5 references)
+   - AUDIT_REPORT.md (1 reference)
+   - QA_SPEC.md (2 references)
+   - SESSION_HANDOFF.md (1 reference)
+   - _INDEX.md (2 references)
+
+2. INCORRECT SECTION REFERENCES (28 instances):
+   Main pattern: References use subsections (§N.N or §N.N.N) that don't exist
+   - Examples: §5.1.1, §10.1, §4.1, §6.3, §2.2, etc.
+   - Suggests section numbering was changed but references not updated
+
+3. ORPHAN FILES (4 archived audit reports):
+   - AUDIT_REPORT_v2.md (no references)
+   - AUDIT_REPORT_v3.md (no references)
+   - AUDIT_REPORT_v4.md (no references)
+   - AUDIT_REPORT_v5.md (no references)
+
+HOW TO RUN:
+================================================================================
+
+From the tools directory:
+  $ cd /sessions/great-sharp-dijkstra/mnt/AI_HANDOFF/Banngannka_Rebuild_Pack/tools
+  $ python3 validate_crossrefs.py
+
+The script will output a formatted report to stdout.
+
+SCRIPT FEATURES:
+================================================================================
+
+✓ Self-contained (no external dependencies)
+✓ Uses only Python standard library (pathlib, re, defaultdict)
+✓ Handles UTF-8 encoded files (Japanese text support)
+✓ Robust error handling for unreadable files
+✓ Detailed contextual output for each issue
+✓ Health score calculation (weighted by reference count and orphans)
+✓ Executable from tools directory (auto-detects parent directory)
+
+RECOMMENDATIONS FOR FIXING ISSUES:
+================================================================================
+
+HIGH PRIORITY:
+1. Audit section numbering in:
+   - GAME_DESIGN.md (multiple subsection refs)
+   - BACKEND_DESIGN.md
+   - NETWORK_SPEC.md
+   - ERROR_HANDLING.md
+   - ACCESSIBILITY_SPEC.md
+   - PERFORMANCE_SPEC.md
+
+2. Update README.md references to match actual file names:
+   - Remove references to _INDEX.md
+   - Remove references to AUDIT_REPORT.md (use AUDIT_REPORT_v5.md)
+   - Remove references to SESSION_HANDOFF.md
+
+MEDIUM PRIORITY:
+3. Consider whether deleted files should be:
+   - Restored from backup
+   - Or have all references updated/removed
+
+4. Review orphan audit report versions:
+   - Decide if v2-v4 should be archived elsewhere
+   - Or consolidated into single report
+
+LOW PRIORITY:
+5. Update section references in audit reports to match new numbering
+
+TECHNICAL NOTES:
+================================================================================
+
+The validator extracts sections by finding markdown headers:
+- Level 2 headers: ## N. ... (creates section N)
+- Level 3 headers: ### N.N. ... (creates section N.N)
+- Pattern: Re.compile(r'^(#{2,4})\s+(\d+(?:\.\d+)*)\.')
+
+Cross-references are detected by finding file-like patterns:
+- Pattern: Re.compile(r'`?([A-Z_][A-Z0-9_]*\.md)(?:\s+§([\d.]+))?`?')
+- Matches: FILENAME.md, FILENAME.md §5, FILENAME.md §5.1, etc.
+
+Health score calculation:
+- Broken references penalty: (broken_refs / total_refs) × 100 × 0.7
+- Orphan files penalty: (orphan_count / file_count) × 100 × 0.3
+- Final score: 100 - (broken_penalty + orphan_penalty)
+
+================================================================================

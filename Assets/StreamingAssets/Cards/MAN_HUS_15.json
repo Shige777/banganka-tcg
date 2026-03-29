@@ -1,0 +1,51 @@
+{
+  "id": "MAN_HUS_15",
+  "cardName": "孫義",
+  "type": 0,
+  "cpCost": 4,
+  "aspect": 5,
+  "effectKey": "SUMMON_AMBUSH_DEFEND_BUFF",
+  "flavorText": "殉死を覚悟した老兵。最後の壁となる。",
+  "rarity": "SR",
+  "wishTrigger": "WT_BLOCKER",
+  "emotionTag": "Atonement",
+  "battlePower": 3500,
+  "wishDamage": 2,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Ambush",
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_hus_15",
+  "title": "殉壁の古参兵",
+  "visualDescription": "Sun Yi, old veteran soldier with many scars, loyal to the last wall"
+}

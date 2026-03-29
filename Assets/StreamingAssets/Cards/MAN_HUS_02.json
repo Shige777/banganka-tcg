@@ -1,0 +1,50 @@
+{
+  "id": "MAN_HUS_02",
+  "cardName": "黄鍵",
+  "type": 0,
+  "cpCost": 3,
+  "aspect": 5,
+  "effectKey": "SUMMON_BLOCKER",
+  "flavorText": "鎖に縛られた罪の看守。自らの罪をも封じる。",
+  "rarity": "C",
+  "wishTrigger": "-",
+  "emotionTag": "Atonement",
+  "battlePower": 5000,
+  "wishDamage": 5,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_hus_02",
+  "title": "鎖の看守",
+  "visualDescription": "Huang Jian, stern jailer with heavy chain keys"
+}

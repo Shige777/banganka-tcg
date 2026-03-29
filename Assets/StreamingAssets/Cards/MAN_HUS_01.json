@@ -1,0 +1,50 @@
+{
+  "id": "MAN_HUS_01",
+  "cardName": "林門",
+  "type": 0,
+  "cpCost": 2,
+  "aspect": 5,
+  "effectKey": "SUMMON_BLOCKER",
+  "flavorText": "静寂の門を守る番人。罪を封じるために立つ。",
+  "rarity": "C",
+  "wishTrigger": "-",
+  "emotionTag": "Atonement",
+  "battlePower": 3500,
+  "wishDamage": 4,
+  "wishDamageType": "fixed",
+  "keywords": [
+    "Blocker"
+  ],
+  "baseGaugeDelta": 0,
+  "wishDamageDelta": 0,
+  "powerDelta": 0,
+  "restTargets": 0,
+  "removeCondition": "",
+  "targetScope": "",
+  "drawCount": 0,
+  "hpDamagePercent": 0,
+  "damageType": "",
+  "bounceCount": 0,
+  "searchAspect": "",
+  "searchType": "",
+  "searchCount": 0,
+  "destroyCount": 0,
+  "ambushType": "",
+  "selfPowerDelta": 0,
+  "emotionMatch": "",
+  "emotionThreshold": 0,
+  "lockCount": 0,
+  "globalRule": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "ownerBonus": {
+    "kind": "",
+    "value": 0,
+    "condition": ""
+  },
+  "illustrationId": "Manifestations/man_hus_01",
+  "title": "静かなる門番",
+  "visualDescription": "Lin Men, young quiet gatekeeper standing at attention"
+}

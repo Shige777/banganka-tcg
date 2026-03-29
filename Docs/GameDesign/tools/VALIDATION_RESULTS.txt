@@ -1,0 +1,56 @@
+CROSS-REFERENCE VALIDATION REPORT
+Generated: 2026-03-18 (v6.0 update)
+
+OVERALL RESULTS:
+- Health Score: 96.0% (EXCELLENT)
+- Total files scanned: 56
+- Total cross-references found: 856
+- Broken file references: 16 (all intentional historical notes — see below)
+- Broken section references: 0
+- Orphan files: 5 (archived audit reports — intentional)
+
+KEY FINDINGS:
+
+1. BROKEN FILE REFERENCES (16件 — すべて意図的な歴史的記述):
+   以下のファイルへの参照は、削除済みファイルの記録として意図的に残している。
+   修正不要。
+
+   a) 統合済みファイル（内容は移行先で利用可能）:
+      - ASSET_AUDIO.md → SOUND_DESIGN_SPEC.md §7-12 に統合済み
+        参照元: README.md（v3.0削除内容の記録）, SOUND_DESIGN_SPEC.md（統合ヘッダー注記）
+      - ASSET_CARD_EFFECTS.md → ANIMATION_SPEC.md §10-12 に統合済み
+        参照元: README.md, ANIMATION_SPEC.md（統合ヘッダー注記）
+
+   b) 削除済みファイル（内容は上位互換ファイルでカバー）:
+      - AUDIT_REPORT.md → AUDIT_REPORT_v2.md に置き換え済み
+      - SESSION_HANDOFF.md → 陳腐化につき削除
+      - _INDEX.md → README.md に統合済み
+
+   c) AUDIT_REPORT_v2/v5.md内の参照: 過去監査時点の記録で修正不要
+
+2. BROKEN SECTION REFERENCES: 0件（修正済み）
+   - AUDIT_REPORT_v3.md §6.5 → §6.3 に修正済み（2026-03-18）
+   - SOUND_DESIGN_SPEC.md §7 → §2 に修正済み（2026-03-18）
+   - バリデーターの検出バグ（subsection検出不足）も修正済み（2026-03-18）
+
+3. ORPHAN FILES (5件 — すべて意図的):
+   - AUDIT_REPORT_v2.md〜v5.md: 過去監査アーカイブ（README.mdに記録あり）
+   - INDEPENDENT_AUDIT_v6.md: 第6回独立監査レポート（README.mdに記録あり）
+
+CHANGES IN v6.0 (2026-03-18):
+- Validator script fixed: subsection heading detection improved (with/without trailing period)
+- Health score improved: 93.8% → 96.0%
+- Section reference errors fixed: 28 (false positives) → 0 real errors
+- ANIMATION_SPEC.md: ASSET_CARD_EFFECTS §1/§6 → ANIMATION_SPEC §10/§11 に修正
+- SOUND_DESIGN_SPEC.md: ASSET_LIST.md §7 → §2 に修正
+- AUDIT_REPORT_v3.md: TEST_PLAN.md §6.5 → §6.3 に修正
+- README.md: 削除済みファイルの記述を明示的に「ファイル削除済み」と更新
+
+CARD POOL UPDATE (v0.5.1):
+- 78種 → 156種 (顕現84 + 詠術48 + 界律24)
+- 各願相均等拡張: 顕現7→14種, 詠術4→8種, 界律2→4種
+
+DECK BUILDER UI (MVP必須化):
+- PRODUCT_REQUIREMENTS.md: デッキ構築UIをMVP必須に変更
+- GAME_DESIGN.md §6.2: プリセット固定→プリセット+カスタム構築に変更
+- IMPLEMENTATION_PLAN.md Step 45: MVP必須注記追加
