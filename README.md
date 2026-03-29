@@ -8,6 +8,12 @@
 
 ---
 
+## バトル画面
+
+<p align="center">
+  <img src="Assets/art/screenshot_battle.png" width="720" alt="バトル画面">
+</p>
+
 ## ゲーム概要
 
 万願果は、HPが削られるほど願主（リーダー）が成長する逆転メカニクスを核とした1v1対戦デジタルTCG。
