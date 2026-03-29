@@ -5,24 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>万願果（ばんがんか）— オリジナルTCG企画書</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<script>
+  // Reveal.js print-pdf support
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match(/print-pdf/gi)
+    ? 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/css/print/pdf.css'
+    : '';
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
 <style>
 :root {
-  --bg-deep: #0a0a1a;
-  --purple: #9A5BFF;
-  --red: #FF5A36;
-  --gold: #F4C542;
-  --blue: #4DA3FF;
-  --green: #59C36A;
+  --purple: #7B3FD4;
+  --red: #D93A1D;
+  --gold: #C49000;
+  --blue: #2B7AD6;
+  --green: #3A9E4A;
   --dark: #3A3A46;
-  --text: #e8e8f0;
-  --text-dim: #8888aa;
-  --card-bg: #14142a;
+  --text: #1a1a2e;
+  --text-dim: #555570;
+  --card-bg: #f0f0f8;
 }
 
 .reveal-viewport {
-  background: var(--bg-deep);
+  background: #fff;
 }
 
 .reveal {
@@ -45,17 +54,13 @@
 
 .reveal h1 {
   font-size: 1.8em;
-  background: linear-gradient(135deg, var(--purple), var(--red));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--purple);
 }
 
 .reveal h2 {
   font-size: 1.2em;
-  color: var(--gold);
+  color: var(--text);
   margin-bottom: 0.4em;
-  text-shadow: 0 0 20px rgba(244,197,66,0.3);
 }
 
 .reveal h3 {
@@ -71,23 +76,22 @@
 .reveal ul { list-style: none; padding-left: 0; }
 .reveal ul li::before {
   content: ">";
-  color: var(--gold);
+  color: var(--purple);
   font-weight: 900;
   margin-right: 0.5em;
 }
 
 .reveal blockquote {
-  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.15));
-  border-left: 4px solid var(--gold);
+  background: #f5f0ff;
+  border-left: 4px solid var(--purple);
   padding: 0.5em 0.8em;
   font-style: normal;
   border-radius: 4px;
-  box-shadow: 0 0 30px rgba(154,91,255,0.1);
 }
 
 .reveal blockquote p {
   font-size: 0.75em;
-  color: var(--gold);
+  color: var(--purple);
   font-weight: 700;
 }
 
@@ -99,16 +103,14 @@
 .dim { color: var(--text-dim) !important; }
 
 .accent-box {
-  background: linear-gradient(135deg, rgba(154,91,255,0.12), rgba(255,90,54,0.08));
-  border: 1px solid rgba(154,91,255,0.3);
+  background: #f5f0ff;
+  border: 1px solid #d4c4f0;
   border-radius: 8px;
   padding: 0.5em 0.7em;
   margin: 0.3em 0;
 }
 
-.glow-text {
-  text-shadow: 0 0 15px rgba(244,197,66,0.5), 0 0 30px rgba(244,197,66,0.2);
-}
+.glow-text { }
 
 /* ===== Title Slide ===== */
 .title-slide {
@@ -126,10 +128,9 @@
 }
 .title-hook {
   font-size: 1em !important;
-  color: var(--gold);
+  color: var(--purple);
   font-weight: 900;
   margin-top: 0.4em;
-  text-shadow: 0 0 25px rgba(244,197,66,0.5), 0 0 50px rgba(244,197,66,0.25);
   letter-spacing: 0.05em;
 }
 .title-summary {
@@ -152,13 +153,7 @@
   width: 80px; height: 80px;
   margin: 0.3em auto;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--gold), var(--purple) 60%, var(--red) 100%);
-  box-shadow: 0 0 40px rgba(154,91,255,0.5), 0 0 80px rgba(255,90,54,0.3), inset 0 0 20px rgba(244,197,66,0.4);
-  animation: orbPulse 3s ease-in-out infinite;
-}
-@keyframes orbPulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(154,91,255,0.5), 0 0 80px rgba(255,90,54,0.3); }
-  50% { box-shadow: 0 0 60px rgba(154,91,255,0.7), 0 0 120px rgba(255,90,54,0.5); }
+  background: radial-gradient(circle at 35% 35%, #F4C542, var(--purple) 60%, var(--red) 100%);
 }
 
 /* ===== Concept Cards ===== */
@@ -169,8 +164,8 @@
   margin-top: 0.5em;
 }
 .concept-card {
-  background: linear-gradient(135deg, rgba(154,91,255,0.1), rgba(255,90,54,0.06));
-  border: 1px solid rgba(154,91,255,0.3);
+  background: #f8f6ff;
+  border: 1px solid #d4c4f0;
   border-radius: 10px;
   padding: 0.5em;
   text-align: center;
@@ -181,7 +176,7 @@
 }
 .concept-card h3 {
   font-size: 0.6em;
-  color: var(--gold);
+  color: var(--purple);
   margin: 0 0 0.2em;
 }
 .concept-card p {
@@ -193,15 +188,15 @@
 
 /* ===== Battle Mockup ===== */
 .battle-screen {
-  background: linear-gradient(180deg, #0d0d24 0%, #0a0a1a 50%, #0d0d24 100%);
-  border: 2px solid rgba(154,91,255,0.3);
+  background: #1a1a2e;
+  border: 2px solid #7B3FD4;
   border-radius: 10px;
   padding: 0.2em 0.35em;
   position: relative;
   max-width: 440px;
   margin: 0 auto;
-  box-shadow: 0 0 40px rgba(154,91,255,0.1);
 }
+.battle-screen, .battle-screen * { color: #e8e8f0; }
 
 .battle-leader {
   display: flex;
@@ -211,8 +206,8 @@
   border-radius: 4px;
   margin-bottom: 0.1em;
 }
-.battle-leader.opponent { background: rgba(255,90,54,0.1); }
-.battle-leader.self { background: rgba(77,163,255,0.1); margin-top: 0.15em; }
+.battle-leader.opponent { background: rgba(255,90,54,0.15); }
+.battle-leader.self { background: rgba(77,163,255,0.15); margin-top: 0.15em; }
 
 .leader-icon {
   width: 28px; height: 28px;
@@ -269,7 +264,7 @@
   padding-right: 4px;
 }
 .grid-slot {
-  aspect-ratio: 3/3;
+  aspect-ratio: 4/3;
   border: 1px solid rgba(154,91,255,0.25);
   border-radius: 3px;
   display: flex;
@@ -280,9 +275,8 @@
   background: rgba(154,91,255,0.05);
 }
 .grid-slot.filled {
-  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.1));
+  background: rgba(154,91,255,0.15);
   border-color: rgba(154,91,255,0.5);
-  color: var(--text);
 }
 .grid-slot.empty {
   color: rgba(255,255,255,0.15);
@@ -295,21 +289,15 @@
   margin: 0.08em 0;
 }
 .algorithm-card-battle {
-  background: linear-gradient(135deg, rgba(244,197,66,0.15), rgba(154,91,255,0.15));
-  border: 2px solid var(--gold);
+  background: rgba(244,197,66,0.15);
+  border: 2px solid #C49000;
   border-radius: 5px;
   padding: 0.15em 0.7em;
   text-align: center;
-  box-shadow: 0 0 15px rgba(244,197,66,0.3), 0 0 30px rgba(244,197,66,0.1);
-  animation: algGlow 2s ease-in-out infinite;
-}
-@keyframes algGlow {
-  0%, 100% { box-shadow: 0 0 15px rgba(244,197,66,0.3); }
-  50% { box-shadow: 0 0 25px rgba(244,197,66,0.5), 0 0 50px rgba(244,197,66,0.2); }
 }
 .algorithm-card-battle .alg-label {
   font-size: 0.3em;
-  color: var(--gold);
+  color: #F4C542;
   font-weight: 900;
 }
 .algorithm-card-battle .alg-name {
@@ -340,25 +328,25 @@
 .hand-card {
   width: 16px;
   height: 22px;
-  background: linear-gradient(135deg, var(--purple), var(--red));
+  background: linear-gradient(135deg, #9A5BFF, #FF5A36);
   border-radius: 2px;
   border: 1px solid rgba(255,255,255,0.3);
 }
 .hand-card.empty {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
 }
 
 /* Ganriki Gauge */
 .ganriki-gauge {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.08);
   border-radius: 3px;
   padding: 0.05em 0.3em;
   margin-top: 0.08em;
 }
 .ganriki-gauge-label {
   font-size: 0.3em;
-  color: var(--gold);
+  color: #F4C542;
   font-weight: 700;
 }
 .ganriki-bar {
@@ -404,7 +392,6 @@
   overflow: hidden;
   position: relative;
   background: var(--card-bg);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   flex-shrink: 0;
 }
 .card-mockup .card-top {
@@ -444,7 +431,7 @@
   padding: 0.2em 0.5em;
   font-size: 0.5em;
   font-weight: 900;
-  color: #fff;
+  color: var(--text);
   text-align: center;
 }
 .card-stats {
@@ -470,9 +457,9 @@
 .card-flavor {
   padding: 0.15em 0.5em 0.3em;
   font-size: 0.33em;
-  color: rgba(255,255,255,0.35);
+  color: #888;
   font-style: italic;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid #ddd;
 }
 .card-type-label {
   text-align: center;
@@ -483,16 +470,16 @@
 
 /* Card borders by aspect */
 .card-red { border: 2px solid var(--red); }
-.card-red .card-top, .card-red .card-name-bar { background: linear-gradient(135deg, rgba(255,90,54,0.3), rgba(255,90,54,0.1)); }
-.card-red .card-art { background: linear-gradient(180deg, rgba(255,90,54,0.15), rgba(255,90,54,0.05)); }
+.card-red .card-top, .card-red .card-name-bar { background: rgba(255,90,54,0.1); }
+.card-red .card-art { background: rgba(255,90,54,0.08); }
 
 .card-green { border: 2px solid var(--green); }
-.card-green .card-top, .card-green .card-name-bar { background: linear-gradient(135deg, rgba(89,195,106,0.3), rgba(89,195,106,0.1)); }
-.card-green .card-art { background: linear-gradient(180deg, rgba(89,195,106,0.15), rgba(89,195,106,0.05)); }
+.card-green .card-top, .card-green .card-name-bar { background: rgba(89,195,106,0.1); }
+.card-green .card-art { background: rgba(89,195,106,0.08); }
 
 .card-gold { border: 2px solid var(--gold); }
-.card-gold .card-top, .card-gold .card-name-bar { background: linear-gradient(135deg, rgba(244,197,66,0.3), rgba(244,197,66,0.1)); }
-.card-gold .card-art { background: linear-gradient(180deg, rgba(244,197,66,0.15), rgba(244,197,66,0.05)); }
+.card-gold .card-top, .card-gold .card-name-bar { background: rgba(244,197,66,0.1); }
+.card-gold .card-art { background: rgba(244,197,66,0.08); }
 
 /* ===== Leader Grid ===== */
 .leader-grid {
@@ -526,12 +513,11 @@
   font-size: 1em;
   font-weight: 900;
   color: #fff;
-  box-shadow: 0 0 12px;
 }
 .leader-name {
   font-size: 0.6em;
   font-weight: 900;
-  color: #fff;
+  color: var(--text);
 }
 .leader-aspect {
   font-size: 0.4em;
@@ -565,14 +551,13 @@
   text-align: center;
   padding: 0.3em 0.6em;
   border-radius: 8px;
-  background: rgba(154,91,255,0.1);
-  border: 2px solid rgba(154,91,255,0.3);
+  background: #f5f0ff;
+  border: 2px solid #d4c4f0;
   min-width: 100px;
 }
 .prog-level.active {
-  background: linear-gradient(135deg, rgba(154,91,255,0.25), rgba(255,90,54,0.15));
-  border-color: var(--gold);
-  box-shadow: 0 0 15px rgba(244,197,66,0.2);
+  background: #ede5ff;
+  border-color: var(--purple);
 }
 .prog-lv {
   font-size: 1em;
@@ -643,10 +628,10 @@
   flex-shrink: 0;
 }
 
-.flow-step.danger { background: rgba(255,90,54,0.15); border: 1px solid rgba(255,90,54,0.4); }
-.flow-step.trigger { background: rgba(244,197,66,0.15); border: 1px solid rgba(244,197,66,0.4); }
-.flow-step.growth { background: rgba(154,91,255,0.15); border: 1px solid rgba(154,91,255,0.4); }
-.flow-step.climax { background: linear-gradient(135deg, rgba(154,91,255,0.2), rgba(255,90,54,0.2)); border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(244,197,66,0.2); }
+.flow-step.danger { background: #fff0ed; border: 1px solid var(--red); }
+.flow-step.trigger { background: #fff8e6; border: 1px solid var(--gold); }
+.flow-step.growth { background: #f5f0ff; border: 1px solid var(--purple); }
+.flow-step.climax { background: #ede5ff; border: 2px solid var(--purple); }
 
 /* ===== Cost Curve Chart ===== */
 .cost-chart {
@@ -666,7 +651,7 @@
 .cost-bar {
   width: 30px;
   border-radius: 4px 4px 0 0;
-  background: linear-gradient(180deg, var(--purple), rgba(154,91,255,0.4));
+  background: var(--purple);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -689,8 +674,8 @@
   gap: 0.5em;
 }
 .col-box {
-  background: rgba(154,91,255,0.08);
-  border: 1px solid rgba(154,91,255,0.25);
+  background: #f8f6ff;
+  border: 1px solid #d4c4f0;
   border-radius: 6px;
   padding: 0.4em;
 }
@@ -703,7 +688,7 @@
   font-size: 0.4em;
 }
 .col-box .col-example {
-  background: rgba(244,197,66,0.1);
+  background: #fff8e6;
   border-left: 3px solid var(--gold);
   padding: 0.2em 0.4em;
   margin-top: 0.2em;
@@ -719,19 +704,16 @@
   width: 100%;
 }
 .reveal table th {
-  background: linear-gradient(135deg, rgba(154,91,255,0.2), rgba(255,90,54,0.1));
-  color: var(--gold);
+  background: #f5f0ff;
+  color: var(--purple);
   font-weight: 900;
   padding: 0.3em 0.4em;
-  border-bottom: 2px solid var(--gold);
+  border-bottom: 2px solid var(--purple);
   text-align: left;
 }
 .reveal table td {
   padding: 0.25em 0.4em;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.reveal table tr:hover td {
-  background: rgba(154,91,255,0.05);
+  border-bottom: 1px solid #e0e0e0;
 }
 
 /* ===== Algorithm Showcase ===== */
@@ -743,10 +725,9 @@
 }
 .alg-card-large {
   background: var(--card-bg);
-  border: 2px solid var(--gold);
+  border: 2px solid var(--purple);
   border-radius: 8px;
   padding: 0.6em;
-  box-shadow: 0 0 25px rgba(244,197,66,0.2);
 }
 .alg-card-large .alg-header {
   display: flex;
@@ -757,7 +738,7 @@
 .alg-card-large .alg-title {
   font-size: 0.7em;
   font-weight: 900;
-  color: #fff;
+  color: var(--text);
   text-align: center;
   margin: 0.2em 0;
 }
@@ -768,12 +749,12 @@
   font-size: 0.45em;
 }
 .alg-shared {
-  background: rgba(154,91,255,0.15);
-  border: 1px solid rgba(154,91,255,0.4);
+  background: #f5f0ff;
+  border: 1px solid #d4c4f0;
 }
 .alg-bonus {
-  background: rgba(244,197,66,0.15);
-  border: 1px solid rgba(244,197,66,0.4);
+  background: #fff8e6;
+  border: 1px solid #e8d090;
 }
 .alg-points {
   font-size: 0.48em;
@@ -791,8 +772,8 @@
   gap: 0.4em;
 }
 .tech-box {
-  background: rgba(154,91,255,0.08);
-  border: 1px solid rgba(154,91,255,0.2);
+  background: #f8f6ff;
+  border: 1px solid #d4c4f0;
   border-radius: 6px;
   padding: 0.35em 0.5em;
 }
@@ -808,10 +789,7 @@
 .stat-number {
   font-size: 1.2em;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--gold), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--purple);
 }
 
 /* ===== Diff Table ===== */
@@ -822,7 +800,7 @@
 
 /* ===== Slide number ===== */
 .reveal .slide-number {
-  color: var(--text-dim);
+  color: #999;
   font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -856,7 +834,7 @@
   gap: 0.3em;
 }
 .production-item {
-  background: rgba(154,91,255,0.08);
+  background: #f8f6ff;
   border-left: 3px solid var(--purple);
   padding: 0.25em 0.4em;
   border-radius: 0 5px 5px 0;
@@ -881,8 +859,8 @@
   gap: 0.3em;
 }
 .summary-item {
-  background: linear-gradient(135deg, rgba(154,91,255,0.1), rgba(255,90,54,0.05));
-  border: 1px solid rgba(154,91,255,0.3);
+  background: #f8f6ff;
+  border: 1px solid #d4c4f0;
   border-radius: 6px;
   padding: 0.3em 0.45em;
 }
@@ -908,8 +886,8 @@
   margin-top: 0.3em;
 }
 .stat-badge {
-  background: rgba(154,91,255,0.1);
-  border: 1px solid rgba(154,91,255,0.3);
+  background: #f5f0ff;
+  border: 1px solid #d4c4f0;
   border-radius: 16px;
   padding: 0.15em 0.5em;
   text-align: center;
@@ -917,10 +895,7 @@
 .stat-badge .stat-num {
   font-size: 0.6em;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--gold), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--purple);
 }
 .stat-badge .stat-label {
   font-size: 0.28em;
@@ -929,17 +904,16 @@
 
 /* Pokemon reference callout */
 .pokemon-ref {
-  background: linear-gradient(135deg, rgba(244,197,66,0.12), rgba(255,90,54,0.08));
-  border: 2px solid rgba(244,197,66,0.4);
+  background: #fff8e6;
+  border: 2px solid var(--gold);
   border-radius: 6px;
   padding: 0.35em 0.5em;
   margin-top: 0.3em;
-  box-shadow: 0 0 15px rgba(244,197,66,0.15);
 }
 .pokemon-ref p {
   font-size: 0.45em;
   margin: 0;
-  color: var(--gold);
+  color: var(--text);
   font-weight: 700;
   line-height: 1.4;
 }
@@ -949,10 +923,9 @@
   text-align: center;
   margin-top: 0.3em;
   padding: 0.35em 0.5em;
-  background: linear-gradient(135deg, rgba(154,91,255,0.15), rgba(255,90,54,0.1));
-  border: 2px solid var(--gold);
+  background: #f5f0ff;
+  border: 2px solid var(--purple);
   border-radius: 8px;
-  box-shadow: 0 0 25px rgba(244,197,66,0.2);
 }
 .final-cta p {
   margin: 0.1em 0;
@@ -970,7 +943,7 @@
   <p class="title-reading">ばんがんか</p>
   <p class="title-hook">「追い詰められるほど、願いは強くなる」</p>
   <p class="title-summary">HPが減るほど願主が覚醒する逆転TCG — 企画・設計・実装: 内山 茂樹</p>
-  <p class="title-badge">Nintendo Switch / PS5 / PC (Steam) / iOS / Android</p>
+  <p class="title-badge">Nintendo Switch / PS5 / PC (Steam) / iOS / Android（基本プレイ無料）</p>
 </section>
 
 <!-- ==================== SLIDE 2: Concept ==================== -->
@@ -1011,13 +984,13 @@
         <tr><td>変化</td><td>「健全に回り続ける対戦環境」と「キャラの願いに感情移入して戦う体験」</td></tr>
       </table>
       <div style="font-size:0.38em; margin-top:0.3em;">
-        <div style="padding:0.2em 0.4em; background:rgba(89,195,106,0.15); border-radius:4px; margin:0.15em 0;">
+        <div style="padding:0.2em 0.4em; background:#edfaef; border-radius:4px; margin:0.15em 0;">
           <span class="green" style="font-weight:900;">初回</span> チュートリアル（HP30短縮戦）→ AI対戦
         </div>
-        <div style="padding:0.2em 0.4em; background:rgba(77,163,255,0.15); border-radius:4px; margin:0.15em 0;">
+        <div style="padding:0.2em 0.4em; background:#eef5ff; border-radius:4px; margin:0.15em 0;">
           <span class="blue" style="font-weight:900;">定着</span> ランクマッチ → パック開封 → デッキ構築
         </div>
-        <div style="padding:0.2em 0.4em; background:rgba(154,91,255,0.15); border-radius:4px; margin:0.15em 0;">
+        <div style="padding:0.2em 0.4em; background:#f5f0ff; border-radius:4px; margin:0.15em 0;">
           <span class="purple" style="font-weight:900;">深化</span> 界律・情相の段階アンロック → ドラフト
         </div>
       </div>
@@ -1032,7 +1005,7 @@
         <tr><td><span class="gold">HP表示</span></td><td>ゲージ表示</td><td>経験と読みが介在</td></tr>
         <tr><td><span class="gold">逆転構造</span></td><td>%制ダメージ</td><td>HP残量で非線形</td></tr>
       </table>
-      <div style="margin-top:0.2em; padding:0.2em 0.4em; background:rgba(244,197,66,0.08); border-left:3px solid var(--gold); border-radius:0 4px 4px 0;">
+      <div style="margin-top:0.2em; padding:0.2em 0.4em; background:#fff8e6; border-left:3px solid var(--gold); border-radius:0 4px 4px 0;">
         <p style="font-size:0.38em; margin:0;"><span class="gold" style="font-weight:900;">デュエマ</span> = ランダムな運の逆転 → <span class="gold" style="font-weight:900;">万願果</span> = 判断で掴む逆転</p>
       </div>
     </div>
@@ -1042,93 +1015,28 @@
 <!-- ==================== SLIDE 4: Battle Screen ==================== -->
 <section>
   <h2><span class="section-number">3</span>バトル画面</h2>
-  <p style="font-size:0.42em; margin-bottom:0.2em;" class="dim">DQライバルズ型グリッドUI — 界律カードを盤面中央に配置</p>
+  <p style="font-size:0.42em; margin-bottom:0.3em;" class="dim">実機スクリーンショット — 願主・顕現・界律・手札・HPゲージが一画面に</p>
 
-  <div class="battle-screen">
-    <!-- Opponent Leader -->
-    <div class="battle-leader opponent">
-      <div class="leader-icon" style="background:linear-gradient(135deg, var(--red), #cc3311);">A</div>
-      <span class="lv-badge lv2">Lv2</span>
-      <div class="hp-bar-container">
-        <div class="hp-bar-label"><span>相手の願主 Aldric</span><span>HP: 62%</span></div>
-        <div class="hp-bar"><div class="hp-bar-fill opponent"></div></div>
-      </div>
+  <div style="display:flex; gap:1.5em; align-items:flex-start;">
+    <div style="flex:1.4;">
+      <img src="battle_screenshot.png" alt="バトル画面スクリーンショット"
+           style="width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.15);">
     </div>
-
-    <!-- Opponent Field (merged) -->
-    <div style="font-size:1em;">
-      <div class="grid-label">相手フィールド</div>
-      <div class="battle-grid">
-        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">5000</span></div>
-        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">7000</span></div>
-        <div class="grid-slot filled">顕現<br><span style="color:var(--red);">4000</span></div>
+    <div style="flex:0.6; font-size:0.42em;">
+      <div style="padding:0.4em 0.6em; background:#f5f0ff; border-left:3px solid var(--purple); border-radius:0 6px 6px 0; margin-bottom:0.4em;">
+        <strong style="color:var(--purple);">願主</strong><br>左右に配置。Lv・戦力・HPゲージを常時表示
       </div>
-    </div>
-
-    <!-- Algorithm Card Center -->
-    <div class="algorithm-center">
-      <div class="algorithm-card-battle">
-        <div class="alg-label">界律 ALGORITHM</div>
-        <div class="alg-name">《突撃陣》</div>
-        <div class="alg-effect">CP2以下の顕現にRush付与 | 設置者: 願力+1%</div>
+      <div style="padding:0.4em 0.6em; background:#fff8e6; border-left:3px solid var(--gold); border-radius:0 6px 6px 0; margin-bottom:0.4em;">
+        <strong style="color:var(--gold);">界律</strong><br>盤面中央に1枚。現在のルールが一目でわかる
       </div>
-    </div>
-
-    <!-- Self Field (merged) -->
-    <div style="font-size:1em;">
-      <div class="grid-label">自分フィールド</div>
-      <div class="battle-grid">
-        <div class="grid-slot filled">顕現<br><span style="color:var(--blue);">8000</span></div>
-        <div class="grid-slot filled">顕現<br><span style="color:var(--blue);">5000</span></div>
-        <div class="grid-slot empty">--</div>
+      <div style="padding:0.4em 0.6em; background:#edfaef; border-left:3px solid var(--green); border-radius:0 6px 6px 0; margin-bottom:0.4em;">
+        <strong style="color:var(--green);">顕現</strong><br>盤面に配置。戦力・状態が表示される
       </div>
-    </div>
-
-    <!-- Self Leader -->
-    <div class="battle-leader self">
-      <div class="leader-icon" style="background:linear-gradient(135deg, var(--blue), #2277dd);">V</div>
-      <span class="lv-badge lv1">Lv1</span>
-      <div class="hp-bar-container">
-        <div class="hp-bar-label"><span>自分の願主 Vael</span><span>HP: 85%</span></div>
-        <div class="hp-bar"><div class="hp-bar-fill self"></div></div>
+      <div style="padding:0.4em 0.6em; background:#eef5ff; border-left:3px solid var(--blue); border-radius:0 6px 6px 0; margin-bottom:0.4em;">
+        <strong style="color:var(--blue);">手札</strong><br>画面下部にカード詳細を表示。CPコストで判断
       </div>
-    </div>
-
-    <!-- Bottom: CP + Hand -->
-    <div class="battle-bottom">
-      <div class="cp-display">CP: 4/5</div>
-      <div class="hand-cards">
-        <div class="hand-card"></div>
-        <div class="hand-card"></div>
-        <div class="hand-card"></div>
-        <div class="hand-card"></div>
-        <div class="hand-card empty"></div>
-      </div>
-    </div>
-
-    <!-- Ganriki Gauge -->
-    <div class="ganriki-gauge">
-      <div class="ganriki-gauge-label">願力ゲージ</div>
-      <div class="ganriki-bar">
-        <div class="ganriki-fill"></div>
-        <div class="ganriki-marker" style="left:85%; background:var(--green);">
-          <div class="ganriki-marker-label">85%</div>
-        </div>
-        <div class="ganriki-marker" style="left:70%; background:var(--blue);">
-          <div class="ganriki-marker-label">70%</div>
-        </div>
-        <div class="ganriki-marker" style="left:55%; background:var(--purple);">
-          <div class="ganriki-marker-label">55%</div>
-        </div>
-        <div class="ganriki-marker" style="left:40%; background:var(--gold);">
-          <div class="ganriki-marker-label">40%</div>
-        </div>
-        <div class="ganriki-marker" style="left:25%; background:var(--red);">
-          <div class="ganriki-marker-label">25%</div>
-        </div>
-        <div class="ganriki-marker" style="left:10%; background:#ff2222;">
-          <div class="ganriki-marker-label">10%</div>
-        </div>
+      <div style="padding:0.4em 0.6em; background:#fff0f0; border-left:3px solid var(--red); border-radius:0 6px 6px 0;">
+        <strong style="color:var(--red);">HPゲージ</strong><br>数値ではなくゲージ。閾値マーカー付き
       </div>
     </div>
   </div>
@@ -1218,7 +1126,7 @@
         CP2以下の顕現の願力ダメージ+1%<br>
         <span class="dim" style="font-size:0.85em;">※ 設置したプレイヤーのみ</span>
       </div>
-      <div style="text-align:center; margin-top:0.2em; font-size:0.35em; color:rgba(255,255,255,0.3); font-style:italic;">
+      <div style="text-align:center; margin-top:0.2em; font-size:0.35em; color:#999; font-style:italic;">
         「誓いは速さに変わり、境界を駆け抜ける。」
       </div>
     </div>
@@ -1245,52 +1153,52 @@
   <p style="font-size:0.42em; margin-bottom:0.2em;" class="dim">「交界」に集う6人の願主。各自の「願い」がゲームメカニクスに直結する。</p>
   <div class="leader-grid">
     <!-- Aldric -->
-    <div class="leader-card" style="background:rgba(255,90,54,0.1); border:1px solid rgba(255,90,54,0.3);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--red),#cc3311); box-shadow:0 0 12px rgba(255,90,54,0.5);">A</div>
+    <div class="leader-card" style="background:#fff0ed; border:1px solid var(--red);">
+      <div class="leader-avatar" style="background:var(--red);">A</div>
       <div class="leader-name">Aldric</div>
       <div class="leader-aspect" style="color:var(--red);">曙 Contest</div>
       <div class="leader-wish">滅ぼした民を蘇らせたい<br>(贖罪)</div>
-      <div class="leader-archetype" style="background:rgba(255,90,54,0.2); color:var(--red);">速攻・波状攻撃</div>
+      <div class="leader-archetype" style="background:#ffe0d8; color:var(--red);">速攻・波状攻撃</div>
     </div>
     <!-- Vael -->
-    <div class="leader-card" style="background:rgba(77,163,255,0.1); border:1px solid rgba(77,163,255,0.3);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--blue),#2266cc); box-shadow:0 0 12px rgba(77,163,255,0.5);">V</div>
+    <div class="leader-card" style="background:#eef5ff; border:1px solid var(--blue);">
+      <div class="leader-avatar" style="background:var(--blue);">V</div>
       <div class="leader-name">Vael</div>
       <div class="leader-aspect" style="color:var(--blue);">空 Whisper</div>
       <div class="leader-wish">自分がここにいた証を残したい<br>(存在証明)</div>
-      <div class="leader-archetype" style="background:rgba(77,163,255,0.2); color:var(--blue);">妨害・制圧</div>
+      <div class="leader-archetype" style="background:#d8eaff; color:var(--blue);">妨害・制圧</div>
     </div>
     <!-- Tonagi -->
-    <div class="leader-card" style="background:rgba(89,195,106,0.1); border:1px solid rgba(89,195,106,0.3);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--green),#339944); box-shadow:0 0 12px rgba(89,195,106,0.5);">灯</div>
+    <div class="leader-card" style="background:#edfaef; border:1px solid var(--green);">
+      <div class="leader-avatar" style="background:var(--green);">灯</div>
       <div class="leader-name">灯凪</div>
       <div class="leader-aspect" style="color:var(--green);">穏 Weave</div>
       <div class="leader-wish">自分の物語を誰かに届けたい<br>(盲目の語り部)</div>
-      <div class="leader-archetype" style="background:rgba(89,195,106,0.2); color:var(--green);">堅実・全体バフ</div>
+      <div class="leader-archetype" style="background:#d8f5dc; color:var(--green);">堅実・全体バフ</div>
     </div>
     <!-- Amara -->
-    <div class="leader-card" style="background:rgba(154,91,255,0.1); border:1px solid rgba(154,91,255,0.3);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--purple),#6633cc); box-shadow:0 0 12px rgba(154,91,255,0.5);">Am</div>
+    <div class="leader-card" style="background:#f5f0ff; border:1px solid var(--purple);">
+      <div class="leader-avatar" style="background:var(--purple);">Am</div>
       <div class="leader-name">Amara</div>
       <div class="leader-aspect" style="color:var(--purple);">妖 Verse</div>
       <div class="leader-wish">自分が作った世界を消したい<br>(破壊と解放)</div>
-      <div class="leader-archetype" style="background:rgba(154,91,255,0.2); color:var(--purple);">自壊・墓地爆発</div>
+      <div class="leader-archetype" style="background:#e8d8ff; color:var(--purple);">自壊・墓地爆発</div>
     </div>
     <!-- Rahim -->
-    <div class="leader-card" style="background:rgba(244,197,66,0.1); border:1px solid rgba(244,197,66,0.3);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,var(--gold),#cc9922); box-shadow:0 0 12px rgba(244,197,66,0.5);">R</div>
+    <div class="leader-card" style="background:#fff8e6; border:1px solid var(--gold);">
+      <div class="leader-avatar" style="background:var(--gold);">R</div>
       <div class="leader-name">Rahim</div>
       <div class="leader-aspect" style="color:var(--gold);">遊 Manifest</div>
       <div class="leader-wish">亡くした姉を蘇らせたい<br>(喪失と成長)</div>
-      <div class="leader-archetype" style="background:rgba(244,197,66,0.2); color:var(--gold);">再演・リソース循環</div>
+      <div class="leader-archetype" style="background:#fff0c0; color:var(--gold);">再演・リソース循環</div>
     </div>
     <!-- Suihou -->
-    <div class="leader-card" style="background:rgba(58,58,70,0.3); border:1px solid rgba(58,58,70,0.6);">
-      <div class="leader-avatar" style="background:linear-gradient(135deg,#555566,var(--dark)); box-shadow:0 0 12px rgba(58,58,70,0.5); border:1px solid #666;">崔</div>
+    <div class="leader-card" style="background:#f0f0f3; border:1px solid var(--dark);">
+      <div class="leader-avatar" style="background:var(--dark);">崔</div>
       <div class="leader-name">崔鋒</div>
       <div class="leader-aspect" style="color:#8888aa;">玄 Hush</div>
       <div class="leader-wish">敗者の歴史を記録に残したい<br>(記録)</div>
-      <div class="leader-archetype" style="background:rgba(58,58,70,0.4); color:#aaa;">耐久・殉陣</div>
+      <div class="leader-archetype" style="background:#e0e0e5; color:var(--dark);">耐久・殉陣</div>
     </div>
   </div>
 </section>
@@ -1318,7 +1226,7 @@
       <div class="pts">4pt</div>
       <div>&#10145;</div>
     </div>
-    <div class="prog-level active" style="border-color:var(--red); box-shadow:0 0 15px rgba(255,90,54,0.3);">
+    <div class="prog-level active" style="border-color:var(--red);">
       <div class="prog-lv" style="color:var(--red);">Lv 3</div>
       <div class="prog-skill" style="color:var(--red);">スキル2 解放</div>
       <div class="prog-bonus">戦力 +1000</div>
@@ -1403,7 +1311,7 @@
           <div class="cost-label">CP7</div>
         </div>
         <div class="cost-bar-group">
-          <div class="cost-bar" style="height:150px; background:linear-gradient(180deg, var(--gold), rgba(244,197,66,0.4));">21K</div>
+          <div class="cost-bar" style="height:150px; background:var(--gold);">21K</div>
           <div class="cost-label">CP10</div>
         </div>
       </div>
@@ -1503,7 +1411,7 @@
   </div>
 
   <div class="final-cta">
-    <p style="font-size:0.55em; color:var(--gold); font-weight:900; margin:0;">万願果は企画書ではなく、遊べるゲームです。</p>
+    <p style="font-size:0.55em; color:var(--purple); font-weight:900; margin:0;">万願果は企画書ではなく、遊べるゲームです。</p>
     <p style="font-size:0.4em; color:var(--text); margin:0.15em 0 0;">36,000行のC#、162種のカード、108,000戦のバランスシミュレーション</p>
     <p style="font-size:0.35em; color:var(--text-dim); margin:0.1em 0 0;">GitHub: github.com/Shige777/banganka-tcg</p>
   </div>
@@ -1524,6 +1432,8 @@ Reveal.initialize({
   transitionSpeed: 'default',
   backgroundTransition: 'fade',
   center: true,
+  pdfSeparateFragments: false,
+  pdfMaxPagesPerSlide: 1,
 });
 </script>
 </body>
