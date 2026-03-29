@@ -30,6 +30,15 @@
 
 各願主の「願い」がゲームメカニクスに直結。キャラクターへの感情移入がデッキ選択の動機になる。
 
+<p align="center">
+  <img src="Assets/art/aldric.png" width="140" alt="Aldric">
+  <img src="Assets/art/vael.png" width="140" alt="Vael">
+  <img src="Assets/art/touna.png" width="140" alt="灯凪">
+  <img src="Assets/art/amara.png" width="140" alt="Amara">
+  <img src="Assets/art/rahim.png" width="140" alt="Rahim">
+  <img src="Assets/art/tseifon.png" width="140" alt="崔鋒">
+</p>
+
 ---
 
 ## 技術構成
