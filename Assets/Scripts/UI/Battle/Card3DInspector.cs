@@ -11,7 +11,7 @@ namespace Banganka.UI.Battle
     /// <summary>
     /// カード3Dインスペクト表示。
     /// 長押し/タップでカードを拡大表示し、ジャイロ/ドラッグで疑似3D傾き。
-    /// Pokemon TCG Pocket / Marvel Snap のカード詳細に相当。
+    /// デジタルTCGのカード詳細表示に相当。
     /// </summary>
     public class Card3DInspector : MonoBehaviour
     {
