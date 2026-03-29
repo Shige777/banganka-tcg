@@ -999,7 +999,7 @@
       <h3 style="font-size:0.6em; color:var(--gold);">既存TCGとの差別化</h3>
       <table class="diff-table" style="margin-top:0.2em;">
         <tr><th>要素</th><th>万願果</th><th>違い</th></tr>
-        <tr><td><span class="gold">勝利条件</span></td><td>HP削り + 鯱鉾</td><td>攻め動機 + 逆転可能の両立</td></tr>
+        <tr><td><span class="gold">勝利条件</span></td><td>HP削り + 直撃</td><td>攻め動機 + 逆転可能の両立</td></tr>
         <tr><td><span class="gold">フィールド</span></td><td>界律(共有1枠)</td><td>非対称な共有ルール</td></tr>
         <tr><td><span class="gold">リーダー</span></td><td>願主(試合中成長)</td><td>ストーリー直結の成長</td></tr>
         <tr><td><span class="gold">HP表示</span></td><td>ゲージ表示</td><td>経験と読みが介在</td></tr>
@@ -1274,80 +1274,14 @@
     <div class="accent-box" style="padding:0.35em 0.5em;">
       <h3 style="font-size:0.48em; color:var(--red); margin:0 0 0.15em;">攻める側のジレンマ</h3>
       <p style="font-size:0.38em; margin:0;">追い詰めるほど相手の願主が成長。攻めないと勝てないが、攻めると覚醒される。</p>
-      <p style="font-size:0.38em; margin:0.15em 0 0;"><span class="gold" style="font-weight:700;">鯱鉾勝利</span>(追撃で即勝) + <span class="gold" style="font-weight:700;">塗り勝利</span>(24T後HP比較) → 攻撃の必要性とリスクが両立。</p>
+      <p style="font-size:0.38em; margin:0.15em 0 0;"><span class="gold" style="font-weight:700;">直撃勝利</span>(追撃で即勝) + <span class="gold" style="font-weight:700;">判定勝利</span>(24T後HP比較) → 攻撃の必要性とリスクが両立。</p>
     </div>
   </div>
 </section>
 
-<!-- ==================== SLIDE 9: Balance Design ==================== -->
+<!-- ==================== SLIDE 9: Production + Implementation + Principles + Summary ==================== -->
 <section>
-  <h2><span class="section-number">8</span>バランス設計</h2>
-  <div class="two-cols">
-    <div>
-      <h3 style="color:var(--gold); font-size:0.6em;">コストカーブ: バニラ戦力 = CP x 2000 + 1000</h3>
-      <div class="cost-chart">
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:24px;">3K</div>
-          <div class="cost-label">CP1</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:40px;">5K</div>
-          <div class="cost-label">CP2</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:56px;">7K</div>
-          <div class="cost-label">CP3</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:72px;">9K</div>
-          <div class="cost-label">CP4</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:88px;">11K</div>
-          <div class="cost-label">CP5</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:120px;">15K</div>
-          <div class="cost-label">CP7</div>
-        </div>
-        <div class="cost-bar-group">
-          <div class="cost-bar" style="height:150px; background:var(--gold);">21K</div>
-          <div class="cost-label">CP10</div>
-        </div>
-      </div>
-      <p style="font-size:0.36em; text-align:center; margin-top:0.2em;" class="dim">キーワード/効果は基準からペナルティを引いて戦力を決定</p>
-    </div>
-    <div>
-      <h3 style="color:var(--gold); font-size:0.6em;">キーワードペナルティ</h3>
-      <table style="margin-top:0.2em;">
-        <tr><th>キーワード</th><th>ペナルティ</th></tr>
-        <tr><td>Rush</td><td>-500</td></tr>
-        <tr><td>Blocker</td><td>-500</td></tr>
-        <tr><td>GuardBreak</td><td>-500</td></tr>
-        <tr><td>登場時ドロー</td><td>-1000</td></tr>
-        <tr><td>登場時除去</td><td>-1500</td></tr>
-      </table>
-
-      <div class="accent-box" style="margin-top:0.4em; padding:0.35em 0.5em;">
-        <h3 style="font-size:0.5em; color:var(--gold);">先攻/後攻バランス</h3>
-        <p style="font-size:0.42em;">
-          目標: 先攻勝率 <span class="gold" style="font-weight:900;">45~55%</span><br>
-          補正: 後攻は初期手札<span class="gold" style="font-weight:900;">+1枚</span>（先攻5枚 / 後攻6枚）<br>
-          検証: <span class="gold" style="font-weight:900;">108,000戦</span>の自動バランスシミュレーション
-        </p>
-      </div>
-
-      <div class="accent-box" style="margin-top:0.2em; padding:0.35em 0.5em;">
-        <p style="font-size:0.42em; margin:0;"><span class="gold" style="font-weight:700;">レアリティ ≠ 強さ</span><br>
-        Commonでも構築の核になる。SSRは「強い」ではなく「効果がユニーク」。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SLIDE 10: Production + Implementation + Principles + Summary ==================== -->
-<section>
-  <h2><span class="section-number">9</span>演出・実装・設計の振り返り</h2>
+  <h2><span class="section-number">8</span>演出・実装・設計の振り返り</h2>
 
   <div class="two-cols">
     <div>
@@ -1383,8 +1317,8 @@
           <div class="stat-label">種カード</div>
         </div>
         <div class="stat-badge">
-          <div class="stat-num">30+</div>
-          <div class="stat-label">設計書</div>
+          <div class="stat-num">108K</div>
+          <div class="stat-label">戦シミュレーション</div>
         </div>
       </div>
     </div>
@@ -1392,7 +1326,7 @@
       <div class="summary-grid" style="grid-template-columns:1fr;">
         <div class="summary-item">
           <h4>攻守のジレンマは構造で保証する</h4>
-          <p>デュエマのシールドトリガーから「攻めた側にリスクがある」構造を学び、願力カード閾値+鯱鉾/塗り勝利の2層で「攻めないと勝てない × 攻めるとリスク」を構造的に保証。</p>
+          <p>デュエマのシールドトリガーから「攻めた側にリスクがある」構造を学び、願力カード閾値+直撃/判定勝利の2層で「攻めないと勝てない × 攻めるとリスク」を構造的に保証。</p>
         </div>
         <div class="summary-item">
           <h4>構造的課題はシステムで解消する</h4>
